@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>المفضلة</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <header class="appbar">
+    <div style="flex: 1"><h1 class="t-h1">المفضلة</h1><p class="t-small c-3">{{count}} أكلات محفوظة</p></div>
+  </header>
+  <main class="scroll pad" style="padding-bottom: 16px; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{items}}" as="d" hint-placeholder-count="6">
+      <article class="dish-row">
+        <a class="{{d.ph}}" href="Dish-Ingredients.dc.html" aria-label="{{d.name}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg></a>
+        <a class="body" href="Dish-Ingredients.dc.html">
+          <h2 class="name">{{d.name}}</h2>
+          <div class="meta" style="font-size: 13px"><span>{{d.time}}</span><span>{{d.level}}</span></div>
+          <span class="t-cap c-green">{{d.last}}</span>
+        </a>
+        <button class="icon-btn ghost is-fav" onClick="{{d.remove}}" aria-label="شيلي {{d.name}} من المفضلة"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></button>
+      </article>
+    </sc-for>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <a class="btn btn-secondary btn-block" href="State-Empty-Favorites.dc.html">شوفي شكل القائمة الفاضية</a>
+    </sc-if>
+  </main>
+  <nav class="tabbar" aria-label="التنقل الرئيسي">
+    <a href="Home.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span>الرئيسية</a>
+    <a href="Explore.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>استكشفي</a>
+    <a href="Weekly-Plan.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>الأسبوع</a>
+    <a href="Shopping-List.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>المشتريات</a>
+    <a class="on" href="Favorites.dc.html" aria-current="page"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></span>المفضلة</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+var FAVS = [
+  ['ملوخية بالفراخ', '90 دقيقة', 'متوسطة', 'ph ph-2', 'اتطبخت آخر مرة من 3 أيام'],
+  ['محشي كرنب بالكمون والطماطم والشطة الخضرا', '2 ساعة', 'صعبة', 'ph ph-5', 'اتطبخت آخر مرة من أسبوعين'],
+  ['فراخ بالأرز المعمر', '100 دقيقة', 'متوسطة', 'ph ph-6', 'لسه متطبختش'],
+  ['كفتة داوود باشا', '55 دقيقة', 'سهلة', 'ph ph-4', 'اتطبخت آخر مرة من شهر'],
+  ['سمك بلطي مقلي', '40 دقيقة', 'سهلة', 'ph ph-3', 'لسه متطبختش'],
+  ['بامية باللحمة', '80 دقيقة', 'متوسطة', 'ph ph-1', 'اتطبخت آخر مرة من 10 أيام']
+];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { gone: {} }; }
+  renderVals() {
+    var self = this, gone = this.state.gone;
+    var items = FAVS.map(function (f, i) { return { i: i, f: f }; }).filter(function (x) { return !gone[x.i]; }).map(function (x) {
+      return { name: x.f[0], time: x.f[1], level: x.f[2], ph: x.f[3], last: x.f[4],
+        remove: function () { var g = Object.assign({}, self.state.gone); g[x.i] = 1; self.setState({ gone: g }); } };
+    });
+    return { items: items, count: items.length, empty: items.length === 0 };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+.splashScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 24px 40px;
+  min-height: 100vh;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.centerContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logoWrapper {
+  margin-bottom: 8px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.logo {
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+.brandTitle {
+  font-size: 52px;
+  line-height: 64px;
+  font-weight: 800;
+  color: var(--c-primary-press);
+  margin: 0;
+}
+
+.tagline {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--c-text-2);
+  margin: 0;
+}
+
+.subtagline {
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 500;
+  color: var(--c-text-3);
+  max-width: 280px;
+  margin-top: 4px;
+}
+
+.bottomAction {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}

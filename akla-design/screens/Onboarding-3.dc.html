@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تعريف 3 — خطّطي أسبوعك</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <div class="appbar" style="justify-content: space-between">
+    <a class="icon-btn ghost" href="Onboarding-2.dc.html" aria-label="رجوع"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 24px; gap: 32px">
+    <div class="illu" style="width: 280px; height: 280px; background: var(--c-saffron-tint)" aria-hidden="true">
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 204px">
+        <div class="card" style="padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px"><span class="t-cap c-3">سبت</span><div class="ph ph-1" style="width: 44px; height: 44px; border-radius: 12px"></div></div>
+        <div class="card" style="padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; outline: 2px solid var(--c-primary)"><span class="t-cap c-primary">حد</span><div class="ph ph-2" style="width: 44px; height: 44px; border-radius: 12px"></div></div>
+        <div class="card" style="padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px"><span class="t-cap c-3">اتنين</span><div class="ph ph-3" style="width: 44px; height: 44px; border-radius: 12px"></div></div>
+        <div class="card" style="padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px"><span class="t-cap c-3">تلات</span><div class="ph ph-4" style="width: 44px; height: 44px; border-radius: 12px"></div></div>
+        <div class="card" style="padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px"><span class="t-cap c-3">أربع</span><div class="ph ph-5" style="width: 44px; height: 44px; border-radius: 12px"></div></div>
+        <div class="card" style="padding: 8px; display: grid; place-items: center; background: var(--c-green); color: #fff"><svg class="i lg" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+      </div>
+    </div>
+    <div style="text-align: center; display: flex; flex-direction: column; gap: 8px">
+      <h1 class="t-h1">خطّطي أسبوعك واشتري مرة واحدة</h1>
+      <p class="t-body c-2">جدول أكل للأسبوع كله، وقائمة مشتريات جاهزة تبعتيها على واتساب.</p>
+    </div>
+  </div>
+  <div style="padding: 0 16px 40px; display: flex; flex-direction: column; gap: 24px">
+    <div class="dots" aria-label="شريحة 3 من 3"><i></i><i></i><i class="on"></i></div>
+    <a class="btn btn-primary btn-block" href="Login.dc.html">يلا نبدأ</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

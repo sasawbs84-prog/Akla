@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تفاصيل الأكلة — المقادير</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <main class="scroll">
+    <div class="ph ph-2" style="height: 300px; justify-content: center">
+      <svg class="i lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg>
+      <span>صورة: ملوخية بالفراخ</span>
+      <div style="position: absolute; top: 48px; inset-inline: 16px; display: flex; gap: 8px; z-index: 1">
+        <a class="icon-btn on-photo" href="Home.dc.html" aria-label="رجوع"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span style="flex: 1"></span>
+        <button class="icon-btn on-photo" aria-label="مشاركة"><svg class="i" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></svg></button>
+        <button class="{{favCls}}" onClick="{{toggleFav}}" aria-pressed="{{fav}}" aria-label="أضيفي للمفضلة"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></button>
+      </div>
+    </div>
+    <div style="position: relative; margin-top: -28px; background: var(--c-bg); border-radius: 28px 28px 0 0; padding: 20px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; gap: 6px"><span class="tag green">فراخ</span><span class="tag green">ملوخية</span><span class="tag">أكل بيتي</span></div>
+        <h1 class="t-h1">ملوخية بالفراخ</h1>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <div class="card" style="padding: 10px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><svg class="i c-primary" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="t-small">90 د</span><span class="t-cap c-3">الوقت</span></div>
+        <div class="card" style="padding: 10px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><svg class="i c-primary" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg><span class="t-small">{{people}} أفراد</span><span class="t-cap c-3">الكمية</span></div>
+        <div class="card" style="padding: 10px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><svg class="i c-primary" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M12 20V10M19 20V4"/></svg><span class="t-small">متوسطة</span><span class="t-cap c-3">الصعوبة</span></div>
+        <div class="card" style="padding: 10px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><svg class="i c-primary" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c4 0 7-2.7 7-6.6 0-3.5-2.5-5.9-4-8.4-.6 2-1.6 3-3 3.5C12 6.5 10.5 4.3 9 3c.3 3-3 5.5-3 10.4C5 18.3 8 21 12 21z"/></svg><span class="t-small">520</span><span class="t-cap c-3">سعرة/فرد</span></div>
+      </div>
+      <nav class="seg" aria-label="أقسام الأكلة">
+        <a class="on" href="Dish-Ingredients.dc.html" aria-current="page">المقادير</a>
+        <a href="Dish-Steps.dc.html">طريقة التحضير</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div style="flex: 1"><p class="t-h3">المقادير لـ {{people}} أفراد</p><p class="t-cap c-3">الكميات بتتغيّر لوحدها</p></div>
+        <div class="stepper">
+          <button onClick="{{inc}}" aria-label="زوّد فرد"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+          <output aria-live="polite" style="min-width: 32px">{{people}}</output>
+          <button onClick="{{dec}}" aria-label="قلّل فرد"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+        </div>
+      </div>
+      <div class="card" style="padding: 0 16px">
+        <sc-for list="{{ings}}" as="it" hint-placeholder-count="10">
+          <label class="{{it.cls}}">
+            <input type="checkbox" class="cb" checked="{{it.done}}" onChange="{{it.toggle}}">
+            <span class="name">{{it.name}}</span>
+            <span class="qty">{{it.qty}}</span>
+          </label>
+        </sc-for>
+      </div>
+      <a class="btn btn-tonal btn-block" href="Shopping-List.dc.html">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M12 11v6M9 14h6"/></svg>
+        أضف الناقص للمشتريات ({{missing}})</a>
+      <aside class="banner">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--c-primary-press); margin-top: 2px"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>
+        <div><p style="margin: 0; font-weight: 800">نصيحة الشيف</p><p style="margin: 0">متغطيش الملوخية بعد ما تضيفيها للمرقة عشان متنزلش تحت وتفضل خضرا.</p></div>
+      </aside>
+    </div>
+  </main>
+  <div class="sticky-cta">
+    <a class="btn btn-primary btn-block" href="Cooking-Mode.dc.html">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="fill: currentColor; stroke: none"><path d="M8 5v14l11-7z"/></svg>
+      ابدأ الطبخ</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+var ING = [
+  ['فرخة متقطعة 4 قطع', 1.25, 'kg'],
+  ['ملوخية خضرا مفرومة', 500, 'g'],
+  ['مرقة الفراخ', 6, 'كوب'],
+  ['ثوم مفروم', 8, 'فص'],
+  ['كزبرة ناشفة مطحونة', 1, 'معلقة كبيرة'],
+  ['سمنة بلدي', 2, 'معلقة كبيرة'],
+  ['بصلة متوسطة', 1, 'حبة'],
+  ['ورق لورا', 2, 'ورقة'],
+  ['حبهان', 3, 'حبة'],
+  ['ملح وفلفل أسود', 0, 'حسب الرغبة']
+];
+function frac(v, step) {
+  var r = Math.max(step, Math.round(v / step) * step);
+  var w = Math.floor(r), f = r - w, s = '';
+  if (Math.abs(f - 0.25) < 0.01) s = '¼'; else if (Math.abs(f - 0.5) < 0.01) s = '½'; else if (Math.abs(f - 0.75) < 0.01) s = '¾';
+  return (w ? String(w) : '') + s;
+}
+function qty(base, unit, k) {
+  if (!base) return unit;
+  var v = base * k;
+  if (unit === 'g') return Math.max(50, Math.round(v / 50) * 50) + ' جرام';
+  if (unit === 'kg') return v < 1 ? Math.round(v * 1000 / 50) * 50 + ' جرام' : frac(v, 0.25) + ' كيلو';
+  if (unit === 'كوب' || unit === 'معلقة كبيرة') return frac(v, 0.25) + ' ' + unit;
+  return frac(v, 0.5) + ' ' + unit;
+}
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { people: 4, done: { 2: 1, 5: 1, 7: 1, 9: 1 }, fav: true };
+  }
+  renderVals() {
+    var self = this, st = this.state, k = st.people / 4;
+    var ings = ING.map(function (x, i) {
+      var d = !!st.done[i];
+      return { name: x[0], qty: qty(x[1], x[2], k), done: d, cls: d ? 'check-row is-done' : 'check-row',
+        toggle: function () { var s = Object.assign({}, self.state.done); if (s[i]) delete s[i]; else s[i] = 1; self.setState({ done: s }); } };
+    });
+    return {
+      people: st.people, ings: ings,
+      missing: ings.filter(function (x) { return !x.done; }).length,
+      inc: function () { self.setState({ people: Math.min(12, self.state.people + 1) }); },
+      dec: function () { self.setState({ people: Math.max(1, self.state.people - 1) }); },
+      fav: st.fav, favCls: st.fav ? 'icon-btn on-photo is-fav' : 'icon-btn on-photo',
+      toggleFav: function () { self.setState({ fav: !self.state.fav }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

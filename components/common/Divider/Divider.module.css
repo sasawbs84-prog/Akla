@@ -1,0 +1,22 @@
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 4px 0;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--c-border);
+}
+
+.label {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  padding: 0 4px;
+}
+

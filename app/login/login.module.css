@@ -1,0 +1,77 @@
+.screen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.appbar {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  min-height: 56px;
+  flex-shrink: 0;
+}
+
+.backBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  display: inline-grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--c-text);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.backBtn:hover {
+  background-color: var(--c-surface-2);
+}
+
+.backIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.scrollArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px 32px;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+.termsText {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  text-align: center;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.termsLink {
+  color: var(--c-primary-press);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.termsLink:hover {
+  color: var(--c-primary);
+}
+

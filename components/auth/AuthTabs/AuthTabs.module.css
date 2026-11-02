@@ -1,0 +1,36 @@
+.segmentedContainer {
+  display: flex;
+  background-color: var(--c-surface-2);
+  border-radius: var(--r-md);
+  padding: 4px;
+  gap: 4px;
+  width: 100%;
+}
+
+.tabButton {
+  flex: 1;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-text-2);
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.tabButton:hover:not(.active) {
+  color: var(--c-text);
+}
+
+.active {
+  background-color: var(--c-surface);
+  color: var(--c-primary-press);
+  box-shadow: var(--sh-1);
+}
+

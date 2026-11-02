@@ -1,0 +1,40 @@
+.stickyCta {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  padding: 14px 20px 24px;
+  background-color: var(--c-bg);
+  border-top: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  .stickyCta {
+    position: static;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--c-border);
+    background-color: transparent;
+    justify-content: flex-end;
+  }
+
+  .nextBtn {
+    max-width: 320px;
+  }
+
+  .backBtn {
+    width: auto;
+    padding: 0 28px;
+  }
+}
+
+.nextBtn {
+  flex: 1;
+}
+
+.backBtn {
+  flex-shrink: 0;
+}
+

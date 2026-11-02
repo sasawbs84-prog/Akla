@@ -1,0 +1,85 @@
+.appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  min-height: 60px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .appbar {
+    padding: 20px 32px;
+  }
+}
+
+.startSide {
+  display: flex;
+  align-items: center;
+}
+
+.backBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  display: inline-grid;
+  place-items: center;
+  background-color: transparent;
+  border: 0;
+  color: var(--c-text);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.backBtn:hover {
+  background-color: var(--c-surface-2);
+}
+
+.backBtn:active {
+  transform: scale(0.95);
+}
+
+.backIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.brandBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandLogo {
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+.brandName {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--c-primary-press);
+}
+
+.endSide {
+  display: flex;
+  align-items: center;
+}
+
+.skipBtn {
+  background: transparent;
+  border: 0;
+  color: var(--c-primary-press);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  transition: background-color 0.15s ease;
+}
+
+.skipBtn:hover {
+  background-color: rgba(194, 70, 27, 0.08);
+}
+

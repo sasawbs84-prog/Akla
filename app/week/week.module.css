@@ -1,0 +1,339 @@
+.screen {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .screen {
+    background: radial-gradient(circle at top right, #FDF0E7 0%, var(--c-bg) 60%);
+  }
+}
+
+.contentWrap {
+  flex: 1;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 12px 16px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media (min-width: 768px) {
+  .contentWrap {
+    max-width: 860px;
+    padding: 24px 32px 40px;
+    gap: 20px;
+  }
+}
+
+/* App Bar */
+.appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0 8px;
+}
+
+.titleWrap {
+  flex: 1;
+}
+
+.title {
+  font-size: 26px;
+  line-height: 38px;
+  font-weight: 800;
+  color: var(--c-text);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  margin: 2px 0 0;
+}
+
+.weekNav {
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-border);
+  background-color: var(--c-surface);
+  color: var(--c-text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.iconBtn:hover {
+  background-color: var(--c-surface-2);
+}
+
+.iconBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Progress Card */
+.progressCard {
+  background-color: var(--c-surface);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-lg);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--sh-1);
+}
+
+.progressTextRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--c-text-2);
+}
+
+.progressPct {
+  font-weight: 800;
+  color: var(--c-primary-press);
+}
+
+.progressBar {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background-color: var(--c-surface-2);
+  overflow: hidden;
+  width: 100%;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--c-primary);
+  border-radius: var(--r-pill);
+  transition: width 0.3s ease;
+}
+
+/* Days List */
+.daysList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .daysList {
+    gap: 12px;
+  }
+}
+
+.dayCard {
+  background-color: var(--c-surface);
+  border: 1.5px solid var(--c-border);
+  border-radius: 20px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--sh-1);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.dayCard:hover {
+  border-color: var(--c-border-strong);
+  transform: translateY(-1px);
+}
+
+.todayCard {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 2px var(--c-primary-tint), var(--sh-1);
+}
+
+.dateBlock {
+  width: 48px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dayName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  display: block;
+}
+
+.dateNum {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 28px;
+  color: var(--c-text);
+  margin: 0;
+}
+
+.dishThumb {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+}
+
+.thumbEmoji {
+  font-size: 28px;
+}
+
+.ph1 { background: #E9B79A; }
+.ph2 { background: #B9CF95; }
+.ph3 { background: #F0CF8E; }
+.ph4 { background: #D9B8A0; }
+.ph5 { background: #C9D9B0; }
+.ph6 { background: #EFC2A6; }
+
+.dishInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.todayPill {
+  align-self: flex-start;
+  background-color: var(--c-primary-tint);
+  color: var(--c-primary-press);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+}
+
+.dishTitleLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.dishTitle {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dishTitleLink:hover .dishTitle {
+  color: var(--c-primary);
+}
+
+.dishMeta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-3);
+}
+
+.swapBtn {
+  background: transparent;
+  border: 0;
+  color: var(--c-text-3);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.swapBtn:hover {
+  background-color: var(--c-surface-2);
+  color: var(--c-primary);
+}
+
+.checkWrap {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.dayCheckbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 2px solid var(--c-border-strong);
+  background-color: #ffffff;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dayCheckbox:checked {
+  background-color: var(--c-green);
+  border-color: var(--c-green);
+}
+
+.dayCheckbox:checked::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid #ffffff;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.dayDone .dishTitle {
+  text-decoration: line-through;
+  color: var(--c-text-3);
+}
+
+/* Shopping CTA */
+.shoppingLink {
+  text-decoration: none;
+  margin-top: 6px;
+}
+
+.shoppingCtaBtn {
+  width: 100%;
+  height: 56px;
+  border-radius: var(--r-md);
+  border: 0;
+  background-color: var(--c-primary);
+  color: #ffffff;
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.shoppingCtaBtn:hover {
+  background-color: var(--c-primary-press);
+}
+

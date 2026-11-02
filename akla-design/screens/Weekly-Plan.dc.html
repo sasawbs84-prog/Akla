@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>خطة الأسبوع</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <header class="appbar">
+    <div style="flex: 1"><h1 class="t-h1">خطة الأسبوع</h1><p class="t-small c-3">31 أكتوبر – 6 نوفمبر</p></div>
+    <button class="icon-btn" aria-label="الأسبوع اللي فات"><svg class="i" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+    <button class="icon-btn" aria-label="الأسبوع الجاي"><svg class="i" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+  </header>
+  <main class="scroll pad" style="padding-bottom: 20px; display: flex; flex-direction: column; gap: 10px">
+    <p class="t-small c-2" style="margin-bottom: 2px">طبختي {{cooked}} من 7 أكلات الأسبوع ده</p>
+    <div class="progress" aria-hidden="true" style="margin-bottom: 6px"><i style="width: {{pct}}"></i></div>
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+      <article class="{{d.card}}" style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 20px">
+        <div style="width: 52px; text-align: center; flex: none"><p class="t-cap c-3">{{d.day}}</p><p style="margin: 0; font-size: 22px; font-weight: 800; line-height: 30px">{{d.date}}</p></div>
+        <a class="{{d.ph}}" href="Dish-Ingredients.dc.html" aria-label="{{d.name}}" style="width: 60px; height: 60px; border-radius: 14px; flex: none"></a>
+        <div style="flex: 1; min-width: 0">
+          <sc-if value="{{d.today}}" hint-placeholder-val="{{false}}"><span class="tag tomato" style="height: 22px; font-size: 12px">النهاردة</span></sc-if>
+          <p style="margin: 0; font-size: 16px; line-height: 24px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{d.name}}</p>
+          <p class="t-cap c-3">{{d.time}}</p>
+        </div>
+        <button class="icon-btn ghost" onClick="{{d.swap}}" aria-label="غيّري أكلة {{d.day}}"><svg class="i" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg></button>
+        <label style="width: 44px; height: 48px; display: grid; place-items: center; cursor: pointer" aria-label="اتطبخت يوم {{d.day}}"><input type="checkbox" class="cb" checked="{{d.done}}" onChange="{{d.toggle}}"></label>
+      </article>
+    </sc-for>
+    <a class="btn btn-primary btn-block" href="Shopping-List.dc.html" style="margin-top: 8px">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      جهّزي مشتريات الأسبوع</a>
+  </main>
+  <nav class="tabbar" aria-label="التنقل الرئيسي">
+    <a href="Home.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span>الرئيسية</a>
+    <a href="Explore.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>استكشفي</a>
+    <a class="on" href="Weekly-Plan.dc.html" aria-current="page"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>الأسبوع</a>
+    <a href="Shopping-List.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>المشتريات</a>
+    <a href="Favorites.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></span>المفضلة</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+var POOL = [
+  ['فراخ بالأرز المعمر','100 دقيقة','ph ph-6'], ['كشري','90 دقيقة','ph ph-4'], ['ملوخية بالفراخ','90 دقيقة','ph ph-2'],
+  ['بامية باللحمة','80 دقيقة','ph ph-1'], ['سمك بلطي مقلي','40 دقيقة','ph ph-3'], ['محشي كرنب','2 ساعة','ph ph-5'],
+  ['صينية بطاطس باللحمة','75 دقيقة','ph ph-1'], ['مسقعة باللحمة المفرومة','60 دقيقة','ph ph-4'], ['عدس أصفر وعيش محمص','40 دقيقة','ph ph-3']
+];
+var DAYS = [['السبت','31'],['الحد','1'],['الإتنين','2'],['التلات','3'],['الأربع','4'],['الخميس','5'],['الجمعة','6']];
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { pick: [0, 1, 2, 3, 4, 5, 6], done: { 0: 1, 1: 1 } };
+  }
+  renderVals() {
+    var self = this, st = this.state;
+    var cooked = Object.keys(st.done).length;
+    return {
+      cooked: cooked, pct: Math.round(cooked / 7 * 100) + '%',
+      days: DAYS.map(function (d, i) {
+        var p = POOL[st.pick[i] % POOL.length], today = i === 2, done = !!st.done[i];
+        return {
+          day: d[0], date: d[1], name: p[0], time: done ? 'اتطبخت' : p[1], ph: p[2], today: today, done: done,
+          card: today ? 'card is-today' : 'card',
+          swap: function () { var a = self.state.pick.slice(); a[i] = a[i] + 7; self.setState({ pick: a }); },
+          toggle: function () { var s = Object.assign({}, self.state.done); if (s[i]) delete s[i]; else s[i] = 1; self.setState({ done: s }); }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

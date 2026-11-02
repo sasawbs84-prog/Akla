@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>أكلة — نظام التصميم</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 2200px; box-sizing: border-box; background: var(--c-bg); color: var(--c-text); font-family: var(--font); padding: 64px 72px; display: flex; flex-direction: column; gap: 40px; overflow: hidden">
+  <header style="display: flex; align-items: center; gap: 20px">
+    <img src="../assets/logo-mark.png" alt="شعار أكلة" style="width: 96px; height: 96px; mix-blend-mode: multiply">
+    <div style="flex: 1"><h1 class="t-display" style="font-size: 44px; line-height: 60px">أكلة — نظام التصميم</h1>
+      <p class="t-body c-2">Tokens + components in <code dir="ltr">akla.css</code> · RTL-first · Cairo · Western digits (0–9) everywhere · 8pt grid · min tap target 48px</p></div>
+  </header>
+
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px">
+    <!-- Colors -->
+    <section class="card" style="grid-column: span 7; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <h2 class="t-h2">الألوان</h2>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+        <div><div style="height: 72px; border-radius: 14px; background: #C2461B"></div><p class="t-small">Primary · طماطم</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#C2461B · --c-primary · 5.0:1</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #A23A16"></div><p class="t-small">Primary press</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#A23A16 · text on tint 5.8:1</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #FCEBE2; border: 1px solid var(--c-border)"></div><p class="t-small">Primary tint</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#FCEBE2 · --c-primary-tint</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #4A7524"></div><p class="t-small">Herb green</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#4A7524 · --c-green · 5.4:1</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #E7F0DA"></div><p class="t-small">Green tint</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#E7F0DA · --c-green-tint</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #E9A23B"></div><p class="t-small">Saffron (زينة بس)</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#E9A23B · never text</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #FBF7F2; border: 1px solid var(--c-border)"></div><p class="t-small">Cream bg</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#FBF7F2 · --c-bg</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #F4ECE2"></div><p class="t-small">Surface 2</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#F4ECE2 · --c-surface-2</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #3A2418"></div><p class="t-small">Text · بني غامق</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#3A2418 · 14:1</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #5E4638"></div><p class="t-small">Text 2</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#5E4638 · 8.6:1</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #7D6252"></div><p class="t-small">Text 3 · meta</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#7D6252 · 5.2:1</p></div>
+        <div><div style="height: 72px; border-radius: 14px; background: #B3261E"></div><p class="t-small">Danger</p><p class="t-cap c-3" dir="ltr" style="text-align: right">#B3261E · --c-danger</p></div>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="card" style="grid-column: span 5; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+      <h2 class="t-h2">الخطوط · Cairo</h2>
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--c-border); padding-bottom: 8px"><p class="t-display" style="flex: 1">هنطبخ إيه؟</p><span class="t-cap c-3" dir="ltr">Display 32/48 · 800</span></div>
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--c-border); padding-bottom: 8px"><p class="t-h1" style="flex: 1">ملوخية بالفراخ</p><span class="t-cap c-3" dir="ltr">H1 26/40 · 800</span></div>
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--c-border); padding-bottom: 8px"><p class="t-h2" style="flex: 1">اقتراحات تانية</p><span class="t-cap c-3" dir="ltr">H2 22/34 · 700</span></div>
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--c-border); padding-bottom: 8px"><p class="t-h3" style="flex: 1">المقادير لـ 4 أفراد</p><span class="t-cap c-3" dir="ltr">H3 18/28 · 700</span></div>
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--c-border); padding-bottom: 8px"><p class="t-body" style="flex: 1">ضيفي الملوخية وقلّبي كويس.</p><span class="t-cap c-3" dir="ltr">Body 16/28 · 500</span></div>
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--c-border); padding-bottom: 8px"><p class="t-small" style="flex: 1">90 دقيقة · متوسطة</p><span class="t-cap c-3" dir="ltr">Small 14/22 · 600</span></div>
+      <div style="display: flex; align-items: baseline; gap: 12px"><p class="t-cap" style="flex: 1">سعرة/فرد</p><span class="t-cap c-3" dir="ltr">Caption 13/20 · 600 (meta only)</span></div>
+      <p class="t-small c-2" style="margin-top: 6px">Cooking-mode step text: 28/48 · 700 — readable from arm's length.</p>
+    </section>
+
+    <!-- Spacing / radius / shadow -->
+    <section class="card" style="grid-column: span 5; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <h2 class="t-h2">المسافات والزوايا والظلال</h2>
+      <div style="display: flex; align-items: flex-end; gap: 14px">
+        <div style="text-align: center"><div style="width: 4px; height: 4px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">4</span></div>
+        <div style="text-align: center"><div style="width: 8px; height: 8px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">8</span></div>
+        <div style="text-align: center"><div style="width: 12px; height: 12px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">12</span></div>
+        <div style="text-align: center"><div style="width: 16px; height: 16px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">16</span></div>
+        <div style="text-align: center"><div style="width: 24px; height: 24px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">24</span></div>
+        <div style="text-align: center"><div style="width: 32px; height: 32px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">32</span></div>
+        <div style="text-align: center"><div style="width: 48px; height: 48px; background: var(--c-primary); margin: 0 auto"></div><span class="t-cap c-3">48</span></div>
+      </div>
+      <div style="display: flex; gap: 14px">
+        <div style="text-align: center"><div style="width: 64px; height: 64px; border-radius: 12px; background: var(--c-surface-2)"></div><span class="t-cap c-3" dir="ltr">sm 12</span></div>
+        <div style="text-align: center"><div style="width: 64px; height: 64px; border-radius: 16px; background: var(--c-surface-2)"></div><span class="t-cap c-3" dir="ltr">md 16</span></div>
+        <div style="text-align: center"><div style="width: 64px; height: 64px; border-radius: 20px; background: var(--c-surface-2)"></div><span class="t-cap c-3" dir="ltr">lg 20</span></div>
+        <div style="text-align: center"><div style="width: 64px; height: 64px; border-radius: 28px; background: var(--c-surface-2)"></div><span class="t-cap c-3" dir="ltr">xl 28</span></div>
+        <div style="text-align: center"><div style="width: 64px; height: 64px; border-radius: 999px; background: var(--c-surface-2)"></div><span class="t-cap c-3" dir="ltr">pill</span></div>
+      </div>
+      <div style="display: flex; gap: 20px; padding: 8px 0">
+        <div style="width: 120px; height: 72px; border-radius: 16px; background: #fff; box-shadow: var(--sh-1); display: grid; place-items: center" class="t-cap c-3">sh-1 · cards</div>
+        <div style="width: 120px; height: 72px; border-radius: 16px; background: #fff; box-shadow: var(--sh-2); display: grid; place-items: center" class="t-cap c-3">sh-2 · hero, sheet</div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="card" style="grid-column: span 7; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <h2 class="t-h2">الأزرار</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <button class="btn btn-primary">ابدأ الطبخ</button>
+        <button class="btn btn-secondary"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg>غيّر الأكلة</button>
+        <button class="btn btn-tonal">أضف للمشتريات</button>
+        <button class="btn btn-ghost">تخطّي</button>
+        <button class="btn btn-primary" disabled>غير متاح</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+        <button class="btn btn-primary btn-sm">صغير 44</button>
+        <button class="icon-btn" aria-label="رجوع"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="icon-btn is-fav" aria-label="مفضلة"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></button>
+        <div class="stepper"><button aria-label="زوّد"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button><output>4</output><button aria-label="قلّل"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button></div>
+      </div>
+      <p class="t-small c-2">Rule: one <b>btn-primary</b> per screen. Heights 56 (default) / 44 (sm) / 64 (cooking mode). Icon buttons 48×48.</p>
+    </section>
+
+    <!-- Chips, tags, picks -->
+    <section class="card" style="grid-column: span 6; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <h2 class="t-h2">الشيبس والاختيار</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span class="chip is-on"><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 3"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>كمون</span><span class="chip">شطة</span><span class="chip is-on">فراخ</span><span class="chip">سمك</span>
+        <span class="tag tomato">أكلة النهاردة</span><span class="tag green">فراخ</span><span class="tag">أكل بيتي</span>
+      </div>
+      <div class="pick-grid" style="width: 400px">
+        <div class="pick is-on"><span class="badge"><svg class="i sm" viewBox="0 0 24 24" style="stroke-width: 3"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span class="ph-dot ph-2"><svg class="i" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19 13 11"/></svg></span><span class="lbl">ملوخية</span></div>
+        <div class="pick"><span class="badge"></span><span class="ph-dot ph-1"><svg class="i" viewBox="0 0 24 24"><path d="M7 17c-3-3-2-9 3-11s10 1 10 6-5 7-9 7c-1.5 0-2.8-.6-4-2z"/><circle cx="14" cy="11" r="2"/></svg></span><span class="lbl">لحمة ضاني</span></div>
+        <div class="pick is-on"><span class="badge"><svg class="i sm" viewBox="0 0 24 24" style="stroke-width: 3"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span class="ph-dot ph-3"><svg class="i" viewBox="0 0 24 24"><path d="M3 11h18a9 9 0 0 1-18 0z"/></svg></span><span class="lbl">أرز بالشعرية</span></div>
+      </div>
+      <p class="t-small c-2">Selected = tint fill + 2px primary border + check badge (never color alone).</p>
+    </section>
+
+    <!-- Inputs -->
+    <section class="card" style="grid-column: span 6; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <h2 class="t-h2">الحقول والتحكم</h2>
+      <div class="field"><label>رقم الموبايل</label><div class="input" dir="ltr"><span style="color: var(--c-text-2)">+20</span><span style="color: var(--c-text-3)">010 1234 5678</span></div></div>
+      <div class="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>دوّري على أكلة أو مكوّن…</span></div>
+      <div style="display: flex; gap: 24px; align-items: center">
+        <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" class="cb" checked> متعلّم</label>
+        <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" class="cb"> مش متعلّم</label>
+        <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" class="switch" checked> مفعّل</label>
+        <span style="display: flex; gap: 8px; align-items: center"><span class="radio on"></span> مختار</span>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="card" style="grid-column: span 6; padding: 28px; display: flex; flex-direction: column; gap: 14px; background: var(--c-surface-2)">
+      <h2 class="t-h2">الكروت</h2>
+      <div style="display: flex; gap: 16px; align-items: flex-start">
+        <div class="mini"><div class="ph ph-1"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg></div><div class="body"><h3 class="name">صينية بطاطس باللحمة</h3><span class="t-cap c-3">75 دقيقة · سهلة</span></div></div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+          <div class="dish-row"><div class="ph ph-5"></div><div class="body"><h3 class="name">محشي كرنب بالكمون والطماطم والشطة الخضرا</h3><span class="t-cap c-3">2 ساعة · صعبة</span></div></div>
+          <p class="t-cap c-2">Long names clamp to 2 lines; mini cards ellipsize at 1 line.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback & nav -->
+    <section class="card" style="grid-column: span 6; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+      <h2 class="t-h2">التنقل والتنبيهات</h2>
+      <div class="seg" style="width: 360px"><span class="on" style="flex: 1; height: 48px; border-radius: 12px; display: grid; place-items: center; font-weight: 700">المقادير</span><span style="flex: 1; height: 48px; display: grid; place-items: center; font-weight: 700; color: var(--c-text-2)">طريقة التحضير</span></div>
+      <div class="progress" style="width: 360px"><i style="width: 60%"></i></div>
+      <div class="toast" style="width: 360px"><span>اتضافت 6 حاجات للمشتريات</span><span class="act">تراجع</span></div>
+      <div class="banner" style="width: 360px"><span><b>نصيحة الشيف:</b> متغطيش الملوخية.</span></div>
+      <div style="display: flex; gap: 10px; width: 360px"><div class="sk" style="width: 60px; height: 60px; border-radius: 14px"></div><div style="flex: 1; display: flex; flex-direction: column; gap: 8px"><div class="sk" style="height: 16px"></div><div class="sk" style="height: 12px; width: 60%"></div></div></div>
+    </section>
+
+    <!-- Icons + RTL -->
+    <section class="card" style="grid-column: span 12; padding: 28px; display: flex; gap: 40px">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 14px">
+        <h2 class="t-h2">الأيقونات · outline 24px · stroke 2</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 18px; color: var(--c-text)">
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="الرئيسية"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="بحث"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="الأسبوع"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="المشتريات"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="المفضلة"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="الوقت"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="الأفراد"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="الصعوبة"><path d="M5 20v-5M12 20V10M19 20V4"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="السعرات"><path d="M12 21c4 0 7-2.7 7-6.6 0-3.5-2.5-5.9-4-8.4-.6 2-1.6 3-3 3.5C12 6.5 10.5 4.3 9 3c.3 3-3 5.5-3 10.4C5 18.3 8 21 12 21z"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="تايمر"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="تغيير"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="إشعارات"><path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="مشاركة"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="ورقة"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19 13 11"/></svg>
+          <svg class="i lg" viewBox="0 0 24 24" role="img" aria-label="أوفلاين"><path d="M2 8.5a15 15 0 0 1 4.5-2.8M10 5.1A15 15 0 0 1 22 8.5M5 12a10 10 0 0 1 4-2.2M15.5 10.3A10 10 0 0 1 19 12M8.5 15.5a5 5 0 0 1 7 0M12 19.5h.01M3 3l18 18"/></svg>
+        </div>
+      </div>
+      <div style="width: 520px; display: flex; flex-direction: column; gap: 10px">
+        <h2 class="t-h2">قواعد RTL</h2>
+        <div style="display: flex; align-items: center; gap: 12px"><span class="icon-btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><p class="t-small">رجوع = سهم لليمين (mirrored back)</p></div>
+        <div style="display: flex; align-items: center; gap: 12px"><span class="icon-btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></span><p class="t-small">التالي / فتح = شيفرون لليسار</p></div>
+        <div style="display: flex; align-items: center; gap: 12px"><span class="icon-btn"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="fill: currentColor; stroke: none"><path d="M8 5v14l11-7z"/></svg></span><p class="t-small">Play / media & clocks: never mirrored</p></div>
+        <p class="t-small c-2">Use logical CSS (<code dir="ltr">inset-inline-start, margin-inline-end, text-align: start</code>). Progress fills from the right. Phone numbers & timers are wrapped in <code dir="ltr">dir="ltr"</code>.</p>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

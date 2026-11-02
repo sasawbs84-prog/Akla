@@ -1,0 +1,115 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required {
+  color: var(--c-danger);
+}
+
+.inputContainer {
+  height: 56px;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--c-border-strong);
+  background-color: var(--c-surface);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.inputContainer:focus-within {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 4px var(--c-primary-tint);
+}
+
+.inputContainer.hasError {
+  border-color: var(--c-danger);
+}
+
+.inputContainer.hasError:focus-within {
+  box-shadow: 0 0 0 4px rgba(179, 38, 30, 0.12);
+}
+
+.inputContainer.disabled {
+  background-color: var(--c-surface-2);
+  cursor: not-allowed;
+}
+
+.input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--c-text);
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+.input::placeholder {
+  color: var(--c-text-3);
+  font-weight: 500;
+}
+
+.leadingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-3);
+  flex-shrink: 0;
+}
+
+.togglePasswordBtn {
+  background: transparent;
+  border: 0;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-3);
+  cursor: pointer;
+  border-radius: var(--r-sm);
+  transition: color 0.15s ease;
+}
+
+.togglePasswordBtn:hover {
+  color: var(--c-text);
+}
+
+.iconSvg {
+  width: 20px;
+  height: 20px;
+}
+
+.errorMessage {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--c-danger);
+  margin-top: 2px;
+}
+
+.hintMessage {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--c-text-3);
+  margin-top: 2px;
+}
+

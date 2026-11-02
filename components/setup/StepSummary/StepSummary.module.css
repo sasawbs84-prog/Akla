@@ -1,0 +1,268 @@
+.summaryContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 8px 0 12px;
+}
+
+.checkCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--c-green);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 20px rgba(74, 117, 36, 0.25);
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.checkIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.title {
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 800;
+  color: var(--c-text);
+  margin-top: 6px;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 34px;
+  }
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  color: var(--c-text-2);
+  max-width: 440px;
+  margin: 0;
+}
+
+.errorAlert {
+  background-color: #FDF2F2;
+  border: 1px solid #F8B4B4;
+  color: var(--c-danger);
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Cards Grid */
+.cardsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+.card {
+  background-color: var(--c-surface);
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--c-border);
+  box-shadow: var(--sh-1);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-2);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dotTomato {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--c-primary);
+}
+
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--c-green);
+}
+
+.dotSaffron {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--c-saffron);
+}
+
+.dotBrown {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--c-text-2);
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
+
+.countBadge {
+  background-color: var(--c-surface-2);
+  color: var(--c-text-3);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+}
+
+.editBtn {
+  background: transparent;
+  border: 0;
+  color: var(--c-primary-press);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  transition: background-color 0.15s ease;
+}
+
+.editBtn:hover {
+  background-color: var(--c-primary-tint);
+}
+
+/* Tags */
+.tagsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tagTomato {
+  background-color: var(--c-primary-tint);
+  color: var(--c-primary-press);
+}
+
+.tagGreen {
+  background-color: var(--c-green-tint);
+  color: var(--c-green);
+}
+
+.tagCarb {
+  background-color: var(--c-surface-2);
+  color: var(--c-text-2);
+}
+
+.emptyNotice {
+  font-size: 14px;
+  color: var(--c-text-3);
+  font-style: italic;
+}
+
+/* Meta row */
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  color: var(--c-text-2);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.allergiesText {
+  font-size: 14px;
+  color: var(--c-text-2);
+  margin: 0;
+}
+
+.notesPreview {
+  font-size: 13px;
+  color: var(--c-text-3);
+  background-color: var(--c-surface-2);
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  margin: 0;
+}
+
+/* Footer Action */
+.footerAction {
+  width: 100%;
+  margin-top: 12px;
+}
+
+@media (min-width: 768px) {
+  .footerAction {
+    max-width: 360px;
+    margin: 20px auto 0;
+  }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

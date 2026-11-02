@@ -1,0 +1,80 @@
+.tabbar {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--c-surface);
+  border-top: 1px solid var(--c-border);
+  z-index: 50;
+  user-select: none;
+}
+
+.navInner {
+  display: flex;
+  height: 80px;
+  padding: 6px 8px 18px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .navInner {
+    max-width: 720px;
+    height: 72px;
+    padding: 6px 16px 10px;
+  }
+}
+
+.navItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--c-text-3);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  min-height: 48px;
+}
+
+.navItem:hover {
+  color: var(--c-text);
+}
+
+.pill {
+  width: 56px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+}
+
+.iconWrapper svg {
+  width: 22px;
+  height: 22px;
+}
+
+.label {
+  line-height: 14px;
+}
+
+/* Active State */
+.active {
+  color: var(--c-primary-press);
+}
+
+.active .pill {
+  background-color: var(--c-primary-tint);
+}
+

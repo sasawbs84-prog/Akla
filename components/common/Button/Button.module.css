@@ -1,0 +1,120 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+  user-select: none;
+  border-radius: var(--r-md);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+/* Sizes */
+.sm {
+  height: 44px;
+  font-size: 15px;
+  padding: 0 16px;
+  border-radius: var(--r-sm);
+}
+
+.md {
+  height: 56px;
+  font-size: 17px;
+  padding: 0 24px;
+}
+
+.lg {
+  height: 60px;
+  font-size: 18px;
+  padding: 0 28px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Variants */
+.primary {
+  background-color: var(--c-primary);
+  color: #ffffff;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: var(--c-primary-press);
+}
+
+.primary:active:not(:disabled) {
+  background-color: var(--c-primary-press);
+}
+
+.secondary {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+  border: 1.5px solid var(--c-border-strong);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: var(--c-surface-2);
+}
+
+.tonal {
+  background-color: var(--c-primary-tint);
+  color: var(--c-primary-press);
+}
+
+.tonal:hover:not(:disabled) {
+  background-color: var(--c-primary-soft);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--c-primary-press);
+  height: 48px;
+  padding: 0 12px;
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: rgba(194, 70, 27, 0.06);
+}
+
+/* Disabled */
+.button:disabled {
+  background-color: var(--c-surface-2);
+  color: var(--c-text-3);
+  border-color: transparent;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Icon */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Spinner */
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

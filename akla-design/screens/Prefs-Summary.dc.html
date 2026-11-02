@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>ملخص الاختيارات</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <div class="appbar">
+    <a class="icon-btn ghost" href="Prefs-5-Household.dc.html" aria-label="رجوع"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <div class="scroll pad" style="padding-bottom: 24px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; margin-bottom: 8px">
+      <span style="width: 72px; height: 72px; border-radius: 50%; background: var(--c-green); color: #fff; display: grid; place-items: center"><svg class="i lg" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 3"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+      <h1 class="t-h1" style="margin-top: 8px">كده تمام!</h1>
+      <p class="t-body c-2">ده ملخص اختياراتك. أي حاجة تقدري تعدّليها دلوقتي أو بعدين من حسابك.</p>
+    </div>
+
+    <section class="card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; justify-content: space-between"><h2 class="t-h3">البروتين</h2><a class="btn btn-ghost" href="Prefs-1-Proteins.dc.html" style="height: 44px">تعديل</a></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="tag tomato">لحمة بقري</span><span class="tag tomato">كفتة</span><span class="tag tomato">لحمة مفرومة</span><span class="tag tomato">فراخ</span><span class="tag tomato">حمام</span><span class="tag tomato">سمك بلطي</span><span class="tag tomato">بيض</span></div>
+    </section>
+    <section class="card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; justify-content: space-between"><h2 class="t-h3">خضار وبقوليات</h2><a class="btn btn-ghost" href="Prefs-2-Vegetables.dc.html" style="height: 44px">تعديل</a></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="tag green">كوسة</span><span class="tag green">بامية</span><span class="tag green">باذنجان</span><span class="tag green">ملوخية</span><span class="tag green">كرنب</span><span class="tag green">ورق عنب</span><span class="tag green">بسلة</span><span class="tag green">فول</span><span class="tag green">عدس</span></div>
+    </section>
+    <section class="card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; justify-content: space-between"><h2 class="t-h3">النشويات</h2><a class="btn btn-ghost" href="Prefs-3-Carbs.dc.html" style="height: 44px">تعديل</a></div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="tag">أرز أبيض</span><span class="tag">أرز بالشعرية</span><span class="tag">مكرونة</span><span class="tag">مكرونة بشاميل</span><span class="tag">بطاطس</span><span class="tag">عيش بلدي</span><span class="tag">فتة</span></div>
+    </section>
+    <section class="card" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; justify-content: space-between"><h2 class="t-h3">الطعم وتفاصيل البيت</h2><a class="btn btn-ghost" href="Prefs-5-Household.dc.html" style="height: 44px">تعديل</a></div>
+      <div class="meta" style="font-size: 15px">
+        <span><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>4 أفراد</span>
+        <span><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>حوالي ساعة</span>
+        <span><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c4 0 7-2.7 7-6.6 0-3.5-2.5-5.9-4-8.4-.6 2-1.6 3-3 3.5C12 6.5 10.5 4.3 9 3c.3 3-3 5.5-3 10.4C5 18.3 8 21 12 21z"/></svg>حار شوية</span>
+      </div>
+      <p class="t-small c-2">من غير: مكسرات</p>
+    </section>
+  </div>
+  <div class="sticky-cta">
+    <a class="btn btn-primary btn-block" href="Home.dc.html">يلا نشوف أكلة النهاردة</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

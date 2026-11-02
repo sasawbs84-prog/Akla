@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>استكشفي الأكلات</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <header class="appbar"><h1 class="title" style="font-size: 26px">استكشفي</h1></header>
+  <div class="pad" style="display: flex; gap: 8px; padding-bottom: 12px">
+    <label class="search" style="flex: 1">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" placeholder="دوّري على أكلة أو مكوّن…" aria-label="بحث" value="{{q}}" onChange="{{onQ}}">
+    </label>
+    <button class="icon-btn" aria-label="فلاتر أكتر" style="width: 52px; height: 52px"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></button>
+  </div>
+  <div class="chip-row" role="radiogroup" aria-label="النوع" style="padding-bottom: 8px">
+    <sc-for list="{{types}}" as="t" hint-placeholder-count="7">
+      <button role="radio" aria-checked="{{t.on}}" class="{{t.cls}}" onClick="{{t.pick}}">{{t.label}}</button>
+    </sc-for>
+  </div>
+  <div class="chip-row" style="padding-bottom: 8px">
+    <button class="{{quickCls}}" aria-pressed="{{quick}}" onClick="{{toggleQuick}}"><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>أقل من ساعة</button>
+    <button class="{{easyCls}}" aria-pressed="{{easy}}" onClick="{{toggleEasy}}"><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M12 20V10M19 20V4"/></svg>سهلة بس</button>
+  </div>
+  <main class="scroll pad" style="padding-bottom: 16px">
+    <p class="t-small c-3" style="margin: 4px 0 10px">{{count}} أكلة</p>
+    <sc-if value="{{hasResults}}" hint-placeholder-val="{{true}}">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{results}}" as="d" hint-placeholder-count="6">
+          <a class="mini" href="Dish-Ingredients.dc.html" style="width: auto">
+            <div class="{{d.ph}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+            <div class="body"><h3 class="name" style="white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 48px">{{d.name}}</h3><span class="t-cap c-3">{{d.time}} د · {{d.level}}</span></div>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{noResults}}" hint-placeholder-val="{{false}}">
+      <div class="empty" style="padding-top: 40px">
+        <p class="t-h3">مفيش أكلة بالاسم ده</p>
+        <p class="t-body c-2">جربي كلمة تانية أو شيلي الفلاتر.</p>
+        <a class="btn btn-secondary" href="State-No-Match.dc.html">مش لاقية حاجة؟</a>
+      </div>
+    </sc-if>
+  </main>
+  <nav class="tabbar" aria-label="التنقل الرئيسي">
+    <a href="Home.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span>الرئيسية</a>
+    <a class="on" href="Explore.dc.html" aria-current="page"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>استكشفي</a>
+    <a href="Weekly-Plan.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>الأسبوع</a>
+    <a href="Shopping-List.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>المشتريات</a>
+    <a href="Favorites.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></span>المفضلة</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+var TYPES = [['all','الكل'],['meat','لحوم'],['chicken','فراخ'],['fish','سمك'],['veg','خضار'],['legume','بقوليات'],['carb','أرز ومكرونة']];
+var DISHES = [
+  ['ملوخية بالفراخ','chicken',90,'متوسطة','ph ph-2'], ['صينية بطاطس باللحمة','meat',75,'سهلة','ph ph-1'],
+  ['محشي كرنب','veg',120,'صعبة','ph ph-5'], ['سمك بلطي مقلي','fish',40,'سهلة','ph ph-3'],
+  ['فراخ بالأرز المعمر','chicken',100,'متوسطة','ph ph-6'], ['مسقعة باللحمة المفرومة','veg',60,'سهلة','ph ph-4'],
+  ['كشري مصري','legume',90,'متوسطة','ph ph-3'], ['بامية باللحمة','meat',80,'متوسطة','ph ph-1'],
+  ['شوربة عدس أصفر','legume',40,'سهلة','ph ph-3'], ['مكرونة بشاميل','carb',70,'متوسطة','ph ph-6'],
+  ['جمبري بالصوص الحار','fish',30,'سهلة','ph ph-1'], ['كفتة داوود باشا','meat',55,'سهلة','ph ph-4']
+];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { type: 'all', q: '', quick: false, easy: false }; }
+  renderVals() {
+    var self = this, st = this.state;
+    var res = DISHES.filter(function (d) {
+      return (st.type === 'all' || d[1] === st.type) && (!st.q || d[0].indexOf(st.q.trim()) >= 0) && (!st.quick || d[2] < 60) && (!st.easy || d[3] === 'سهلة');
+    }).map(function (d) { return { name: d[0], time: d[2], level: d[3], ph: d[4] }; });
+    return {
+      q: st.q, onQ: function (e) { self.setState({ q: e.target.value }); },
+      types: TYPES.map(function (t) { var on = st.type === t[0]; return { label: t[1], on: on, cls: on ? 'chip is-on' : 'chip', pick: function () { self.setState({ type: t[0] }); } }; }),
+      quick: st.quick, quickCls: st.quick ? 'chip is-on' : 'chip', toggleQuick: function () { self.setState({ quick: !self.state.quick }); },
+      easy: st.easy, easyCls: st.easy ? 'chip is-on' : 'chip', toggleEasy: function () { self.setState({ easy: !self.state.easy }); },
+      results: res, count: res.length, hasResults: res.length > 0, noResults: res.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

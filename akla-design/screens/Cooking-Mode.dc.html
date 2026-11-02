@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>وضع الطبخ</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <header class="appbar">
+    <a class="icon-btn" href="Dish-Steps.dc.html" aria-label="اقفلي وضع الطبخ"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
+    <p class="t-h3" style="flex: 1; text-align: center">الخطوة {{n}} من {{total}}</p>
+    <button class="icon-btn" onClick="{{openSheet}}" aria-label="المقادير"><svg class="i" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" style="stroke-width: 3"/></svg></button>
+  </header>
+  <div class="pad"><div class="segbar" aria-hidden="true"><sc-for list="{{bars}}" as="b" hint-placeholder-count="8"><i class="{{b.cls}}"></i></sc-for></div></div>
+  <main style="flex: 1; display: flex; flex-direction: column; padding: 24px 20px 0; gap: 20px; min-height: 0">
+    <span class="tag green" style="align-self: flex-start"><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>الشاشة هتفضل منوّرة</span>
+    <p aria-live="polite" style="margin: 0; font-size: 28px; line-height: 48px; font-weight: 700">{{text}}</p>
+    <sc-if value="{{hasTimer}}" hint-placeholder-val="{{true}}">
+      <div class="card" style="padding: 16px; display: flex; align-items: center; gap: 12px; background: var(--c-ink); color: #fff">
+        <svg class="i lg" viewBox="0 0 24 24" aria-hidden="true" style="color: #F7B497"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg>
+        <span role="timer" aria-label="التايمر" dir="ltr" style="flex: 1; text-align: right; font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: 1px">{{clock}}</span>
+        <button class="icon-btn" onClick="{{resetTimer}}" aria-label="إعادة التايمر" style="background: transparent; color: #fff; border-color: rgba(255,255,255,.3)"><svg class="i" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5"/><path d="M4 4v4.5h4.5"/></svg></button>
+        <button class="btn btn-primary" onClick="{{toggleTimer}}" style="height: 52px; padding: 0 18px">{{timerLabel}}</button>
+      </div>
+    </sc-if>
+  </main>
+  <div style="padding: 16px 16px 32px; display: flex; gap: 12px">
+    <button class="btn btn-secondary" onClick="{{prev}}" disabled="{{isFirst}}" style="height: 64px; padding: 0 20px">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>السابقة</button>
+    <sc-if value="{{isLast}}" hint-placeholder-val="{{false}}">
+      <a class="btn btn-primary" href="Home.dc.html" style="flex: 1; height: 64px; background: var(--c-green)">خلّصت! بالهنا والشفا</a>
+    </sc-if>
+    <sc-if value="{{notLast}}" hint-placeholder-val="{{true}}">
+      <button class="btn btn-primary" onClick="{{next}}" style="flex: 1; height: 64px; font-size: 19px">الخطوة الجاية
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+    </sc-if>
+  </div>
+  <sc-if value="{{sheet}}" hint-placeholder-val="{{false}}">
+    <button class="scrim" onClick="{{closeSheet}}" aria-label="اقفلي المقادير" style="border: 0; padding: 0; cursor: pointer"></button>
+    <section class="sheet" role="dialog" aria-label="المقادير" style="max-height: 70%">
+      <div class="grabber"></div>
+      <div style="display: flex; align-items: center; margin-bottom: 4px"><h2 class="t-h2" style="flex: 1">المقادير · 4 أفراد</h2>
+        <button class="icon-btn ghost" onClick="{{closeSheet}}" aria-label="اقفلي"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div style="overflow-y: auto">
+        <sc-for list="{{ings}}" as="g" hint-placeholder-count="10">
+          <div class="check-row" style="cursor: default"><span class="name">{{g.n}}</span><span class="qty">{{g.q}}</span></div>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844},"startStep":{"editor":"int","default":3,"min":1,"max":8},"sheetOpen":{"editor":"boolean","default":false}}'>
+var STEPS = [
+  ['اغسلي الفراخ كويس بالخل والدقيق، واشطفيها بمية ساقعة.', 0],
+  ['في حلة كبيرة حطي الفراخ مع البصلة والورق لورا والحبهان، وغطيها بالمية. لما تغلي، شيلي الريم.', 0],
+  ['وطّي النار وسيبي الفراخ تستوي على نار هادية.', 45],
+  ['صفّي المرقة، وخدي منها 6 كوب في حلة تانية على النار.', 0],
+  ['لما المرقة تغلي، ضيفي الملوخية وقلّبي كويس.', 0],
+  ['سيبيها من غير غطا لحد ما تتماسك.', 5],
+  ['حمّري الثوم في السمنة مع الكزبرة لحد ما يدهّب، وضيفي الطشة على الملوخية.', 0],
+  ['حمّري الفراخ في الفرن لحد ما تاخد لون، وقدّميها مع الأرز الأبيض.', 0]
+];
+var INGS = [['فرخة متقطعة','1¼ كيلو'],['ملوخية خضرا','500 جرام'],['مرقة الفراخ','6 كوب'],['ثوم مفروم','8 فص'],['كزبرة ناشفة','1 معلقة كبيرة'],['سمنة بلدي','2 معلقة كبيرة'],['بصلة متوسطة','1 حبة'],['ورق لورا','2 ورقة'],['حبهان','3 حبة'],['ملح وفلفل أسود','حسب الرغبة']];
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    var s = Math.min(8, Math.max(1, props.startStep || 3)) - 1;
+    this.state = { i: s, left: STEPS[s][1] * 60, running: false, sheet: !!props.sheetOpen };
+  }
+  componentDidMount() {
+    var self = this;
+    this.tick = setInterval(function () {
+      if (self.state.running && self.state.left > 0) self.setState({ left: self.state.left - 1, running: self.state.left - 1 > 0 });
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.tick); }
+  go(i) { this.setState({ i: i, left: STEPS[i][1] * 60, running: false }); }
+  renderVals() {
+    var self = this, st = this.state, i = st.i;
+    var m = Math.floor(st.left / 60), s = st.left % 60;
+    return {
+      n: i + 1, total: STEPS.length, text: STEPS[i][0],
+      bars: STEPS.map(function (_, k) { return { cls: k <= i ? 'on' : '' }; }),
+      hasTimer: STEPS[i][1] > 0,
+      clock: (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s,
+      timerLabel: st.running ? 'إيقاف' : (st.left === STEPS[i][1] * 60 ? 'ابدأ' : 'كمّلي'),
+      toggleTimer: function () { self.setState({ running: !self.state.running }); },
+      resetTimer: function () { self.setState({ left: STEPS[self.state.i][1] * 60, running: false }); },
+      isFirst: i === 0, isLast: i === STEPS.length - 1, notLast: i !== STEPS.length - 1,
+      prev: function () { if (self.state.i > 0) self.go(self.state.i - 1); },
+      next: function () { if (self.state.i < STEPS.length - 1) self.go(self.state.i + 1); },
+      sheet: st.sheet, ings: INGS.map(function (x) { return { n: x[0], q: x[1] }; }),
+      openSheet: function () { self.setState({ sheet: true }); },
+      closeSheet: function () { self.setState({ sheet: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

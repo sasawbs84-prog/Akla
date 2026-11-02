@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تعريف 1 — كل يوم أكلة جديدة</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <div class="appbar" style="justify-content: flex-end">
+    <a class="btn btn-ghost" href="Login.dc.html">تخطّي</a>
+  </div>
+  <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 24px; gap: 32px">
+    <div class="illu" style="width: 280px; height: 280px" aria-hidden="true">
+      <div style="width: 180px; height: 180px; border-radius: 50%; background: #fff; box-shadow: var(--sh-2); display: grid; place-items: center">
+        <div class="ph ph-1" style="width: 132px; height: 132px; border-radius: 50%"><svg class="i lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+      </div>
+      <svg class="i lg leaf" style="top: 34px; right: 30px; width: 44px; height: 44px" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19 13 11"/></svg>
+      <svg class="i leaf" style="bottom: 40px; left: 34px; width: 36px; height: 36px; color: var(--c-saffron)" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg>
+    </div>
+    <div style="text-align: center; display: flex; flex-direction: column; gap: 8px">
+      <h1 class="t-h1">كل يوم أكلة جديدة</h1>
+      <p class="t-body c-2">قوليلنا بتحبي إيه، وأكلة هتقترح عليكي كل يوم طبخة من الحاجات اللي بتحبيها بس.</p>
+    </div>
+  </div>
+  <div style="padding: 0 16px 40px; display: flex; flex-direction: column; gap: 24px">
+    <div class="dots" aria-label="شريحة 1 من 3"><i class="on"></i><i></i><i></i></div>
+    <a class="btn btn-primary btn-block" href="Onboarding-2.dc.html">التالي
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

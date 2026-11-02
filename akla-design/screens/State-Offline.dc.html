@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>مفيش إنترنت</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <div role="status" style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--c-ink); color: #fff; font-size: 14px; font-weight: 700">
+    <svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 4.5-2.8M10 5.1A15 15 0 0 1 22 8.5M5 12a10 10 0 0 1 4-2.2M15.5 10.3A10 10 0 0 1 19 12M8.5 15.5a5 5 0 0 1 7 0M12 19.5h.01M3 3l18 18"/></svg>
+    إنتي أوفلاين دلوقتي
+  </div>
+  <main class="scroll pad" style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 16px">
+    <div class="empty" style="flex: none; padding: 28px 16px 12px">
+      <div class="illu" aria-hidden="true" style="width: 140px; height: 140px; background: var(--c-surface-2); color: var(--c-text-2)">
+        <svg class="i" viewBox="0 0 24 24" style="width: 60px; height: 60px; stroke-width: 1.6"><path d="M2 8.5a15 15 0 0 1 4.5-2.8M10 5.1A15 15 0 0 1 22 8.5M5 12a10 10 0 0 1 4-2.2M15.5 10.3A10 10 0 0 1 19 12M8.5 15.5a5 5 0 0 1 7 0M12 19.5h.01M3 3l18 18"/></svg>
+      </div>
+      <h1 class="t-h2" style="margin-top: 4px">مفيش إنترنت</h1>
+      <p class="t-body c-2">مقدرناش نجيب أكلة النهاردة. اتأكدي من الواي فاي أو الباقة وجربي تاني.</p>
+      <button class="btn btn-primary" style="margin-top: 4px">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5"/><path d="M4 4v4.5h4.5"/></svg>
+        جربي تاني</button>
+    </div>
+    <h2 class="t-h3">متاح من غير إنترنت</h2>
+    <p class="t-small c-3" style="margin-top: -8px">الأكلات المفضلة محفوظة على موبايلك</p>
+    <a class="dish-row" href="Dish-Ingredients.dc.html"><div class="ph ph-2"></div><div class="body"><h3 class="name">ملوخية بالفراخ</h3><span class="t-cap c-3">90 دقيقة · متوسطة</span></div><svg class="i chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></a>
+    <a class="dish-row" href="Dish-Ingredients.dc.html"><div class="ph ph-4"></div><div class="body"><h3 class="name">كفتة داوود باشا</h3><span class="t-cap c-3">55 دقيقة · سهلة</span></div><svg class="i chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></a>
+  </main>
+  <nav class="tabbar" aria-label="التنقل الرئيسي">
+    <a class="on" href="Home.dc.html" aria-current="page"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span>الرئيسية</a>
+    <a href="Explore.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>استكشفي</a>
+    <a href="Weekly-Plan.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>الأسبوع</a>
+    <a href="Shopping-List.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>المشتريات</a>
+    <a href="Favorites.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></span>المفضلة</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

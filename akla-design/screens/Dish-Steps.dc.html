@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تفاصيل الأكلة — طريقة التحضير</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}
+.step{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--c-border)}
+.step:last-child{border-bottom:0}
+.step .n{width:36px;height:36px;border-radius:50%;background:var(--c-primary-tint);color:var(--c-primary-press);display:grid;place-items:center;font-weight:800;font-size:16px;flex:none}
+.step .tx{flex:1;display:flex;flex-direction:column;gap:8px}
+</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <header class="appbar">
+    <a class="icon-btn ghost" href="Dish-Ingredients.dc.html" aria-label="رجوع"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <h1 class="title">ملوخية بالفراخ</h1>
+    <button class="icon-btn ghost is-fav" aria-pressed="true" aria-label="في المفضلة"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></button>
+  </header>
+  <div class="pad" style="padding-bottom: 8px">
+    <nav class="seg" aria-label="أقسام الأكلة">
+      <a href="Dish-Ingredients.dc.html">المقادير</a>
+      <a class="on" href="Dish-Steps.dc.html" aria-current="page">طريقة التحضير</a>
+    </nav>
+  </div>
+  <main class="scroll pad" style="padding-bottom: 24px">
+    <p class="t-small c-3" style="margin: 8px 0 4px">8 خطوات · حوالي 90 دقيقة</p>
+    <ol class="card" style="list-style: none; margin: 0; padding: 0 16px">
+      <li class="step"><span class="n">1</span><div class="tx"><p class="t-body">اغسلي الفراخ كويس بالخل والدقيق، واشطفيها بمية ساقعة.</p></div></li>
+      <li class="step"><span class="n">2</span><div class="tx"><p class="t-body">في حلة كبيرة حطي الفراخ مع البصلة والورق لورا والحبهان، وغطيها بالمية. لما تغلي، شيلي الريم من على الوش.</p>
+        <div class="ph ph-4" style="height: 120px; border-radius: 14px"><span>صورة: شيل الريم</span></div></div></li>
+      <li class="step"><span class="n">3</span><div class="tx"><p class="t-body">وطّي النار وسيبي الفراخ تستوي.</p><span class="tag tomato" style="align-self: flex-start"><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg>تايمر 45 دقيقة</span></div></li>
+      <li class="step"><span class="n">4</span><div class="tx"><p class="t-body">صفّي المرقة، وخدي منها 6 كوب في حلة تانية على النار.</p></div></li>
+      <li class="step"><span class="n">5</span><div class="tx"><p class="t-body">لما المرقة تغلي، ضيفي الملوخية وقلّبي كويس.</p></div></li>
+      <li class="step"><span class="n">6</span><div class="tx"><p class="t-body">سيبيها من غير غطا لحد ما تتماسك.</p><span class="tag tomato" style="align-self: flex-start"><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg>تايمر 5 دقايق</span></div></li>
+      <li class="step"><span class="n">7</span><div class="tx"><p class="t-body">في طاسة، حمّري الثوم في السمنة مع الكزبرة لحد ما يدهّب، وضيفي الطشة على الملوخية.</p></div></li>
+      <li class="step"><span class="n">8</span><div class="tx"><p class="t-body">حمّري الفراخ في الفرن لحد ما تاخد لون، وقدّميها مع الملوخية والأرز الأبيض.</p></div></li>
+    </ol>
+    <aside class="banner" style="margin-top: 16px">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--c-primary-press); margin-top: 2px"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg>
+      <div><p style="margin: 0; font-weight: 800">نصيحة الشيف</p><p style="margin: 0">الطشة لازم تكون والملوخية بتغلي، وقلّبي على طول عشان الثوم يفضل مقرمش.</p></div>
+    </aside>
+  </main>
+  <div class="sticky-cta">
+    <a class="btn btn-primary btn-block" href="Cooking-Mode.dc.html">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="fill: currentColor; stroke: none"><path d="M8 5v14l11-7z"/></svg>
+      ابدأ الطبخ</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

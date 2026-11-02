@@ -1,0 +1,108 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.desktopSteps {
+  display: none;
+  gap: 8px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .desktopSteps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+}
+
+.stepPill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--c-border);
+  background-color: var(--c-surface);
+  color: var(--c-text-3);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.stepPill:hover {
+  border-color: var(--c-border-strong);
+  color: var(--c-text);
+}
+
+.pillNum {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--c-surface-2);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.currentPill {
+  border-color: var(--c-primary);
+  background-color: var(--c-primary-tint);
+  color: var(--c-primary-press);
+}
+
+.currentPill .pillNum {
+  background-color: var(--c-primary);
+  color: #ffffff;
+}
+
+.donePill {
+  border-color: var(--c-green);
+  background-color: var(--c-green-tint);
+  color: var(--c-green);
+}
+
+.donePill .pillNum {
+  background-color: var(--c-green);
+  color: #ffffff;
+}
+
+.mobileInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text-2);
+}
+
+@media (min-width: 768px) {
+  .mobileInfo {
+    display: none;
+  }
+}
+
+.progressBar {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background-color: var(--c-surface-2);
+  overflow: hidden;
+  width: 100%;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--c-primary);
+  border-radius: var(--r-pill);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+

@@ -1,0 +1,394 @@
+.illuWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+
+.circleBg {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .circleBg {
+    width: 360px;
+    height: 360px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .circleBg {
+    width: 390px;
+    height: 390px;
+  }
+}
+
+/* Color Themes per step */
+.illuStep1 .circleBg {
+  background-color: var(--c-primary-tint);
+}
+
+.illuStep2 .circleBg {
+  background-color: var(--c-green-tint);
+}
+
+.illuStep3 .circleBg {
+  background-color: var(--c-saffron-tint);
+}
+
+/* Step 1 Styles */
+.dishPlate {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: var(--sh-2);
+  display: grid;
+  place-items: center;
+  animation: floatMain 4s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+  .dishPlate {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.dishInner {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F3BA9A 0%, #E99E75 100%);
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+  .dishInner {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.dishIcon {
+  width: 60px;
+  height: 60px;
+}
+
+@media (min-width: 768px) {
+  .dishIcon {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+/* Floating Elements */
+.floatingElement {
+  position: absolute;
+  pointer-events: none;
+}
+
+.leafTop {
+  top: 24px;
+  inset-inline-end: 20px;
+  color: var(--c-green);
+  animation: floatLeaf 5s ease-in-out infinite;
+}
+
+.leafGreen {
+  top: 20px;
+  inset-inline-start: 24px;
+  color: var(--c-green);
+  animation: floatLeaf 5s ease-in-out infinite reverse;
+}
+
+.leafIcon {
+  width: 44px;
+  height: 44px;
+}
+
+.spiceBottom {
+  bottom: 28px;
+  inset-inline-start: 24px;
+  color: var(--c-saffron);
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+.spiceIcon {
+  width: 36px;
+  height: 36px;
+}
+
+/* Floating Tags */
+.floatingTag {
+  position: absolute;
+  background-color: #ffffff;
+  color: var(--c-text);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--sh-1);
+  border: 1px solid var(--c-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .floatingTag {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+
+.tagRight {
+  bottom: 30px;
+  inset-inline-end: -10px;
+  animation: floatTag 4s ease-in-out infinite 0.5s;
+}
+
+.tagLeft {
+  top: 36px;
+  inset-inline-start: -10px;
+  animation: floatTag 4s ease-in-out infinite 1.2s;
+}
+
+.tagStepTimer {
+  bottom: 24px;
+  inset-inline-end: -6px;
+  background-color: var(--c-primary-tint);
+  color: var(--c-primary-press);
+  border-color: var(--c-primary-soft);
+  animation: floatTag 4s ease-in-out infinite 0.8s;
+}
+
+.whatsappPill {
+  bottom: 16px;
+  background-color: #E7F0DA;
+  color: var(--c-green);
+  border-color: #C3E2A0;
+  font-weight: 800;
+}
+
+/* Step 2 Recipe Card */
+.recipeCard {
+  width: 216px;
+  background-color: #ffffff;
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  box-shadow: var(--sh-2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: floatMain 4.5s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+  .recipeCard {
+    width: 250px;
+    padding: 20px 22px;
+    gap: 14px;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portionTag {
+  background-color: var(--c-primary-tint);
+  color: var(--c-primary-press);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-3);
+}
+
+.ingredientList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredientItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+@media (min-width: 768px) {
+  .ingredientItem {
+    font-size: 14px;
+  }
+}
+
+.checkDone {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background-color: var(--c-green);
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.checkDone svg {
+  width: 12px;
+  height: 12px;
+}
+
+.checkPending {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid var(--c-border-strong);
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.ingredientName {
+  flex: 1;
+}
+
+.ingredientQty {
+  color: var(--c-text-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Step 3 Week Grid */
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 220px;
+  animation: floatMain 4s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+  .weekGrid {
+    width: 260px;
+    gap: 10px;
+  }
+}
+
+.dayTile {
+  background-color: #ffffff;
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.todayTile {
+  box-shadow: 0 0 0 2px var(--c-primary), var(--sh-1);
+}
+
+.dayLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-3);
+}
+
+.dayTodayLabel {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--c-primary-press);
+}
+
+.dayPhoto {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .dayPhoto {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+}
+
+.ph1 { background-color: #E9B79A; }
+.ph2 { background-color: #B9CF95; }
+.ph3 { background-color: #F0CF8E; }
+.ph4 { background-color: #D9B8A0; }
+.ph5 { background-color: #C9D9B0; }
+
+.shoppingTile {
+  background-color: var(--c-green);
+  color: #ffffff;
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px;
+}
+
+.cartIcon {
+  width: 26px;
+  height: 26px;
+}
+
+.cartLabel {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Animations */
+@keyframes floatMain {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes floatLeaf {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(6deg); }
+}
+
+@keyframes floatTag {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+

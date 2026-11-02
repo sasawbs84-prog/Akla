@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>الرئيسية — أكلة النهاردة</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../akla.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div class="screen">
+  <div class="safe-top"></div>
+  <header class="appbar" style="gap: 12px">
+    <a href="Profile.dc.html" aria-label="حسابي" style="width: 48px; height: 48px; border-radius: 50%; background: var(--c-saffron-tint); color: var(--c-primary-press); display: grid; place-items: center; font-weight: 800; font-size: 18px; flex: none">م</a>
+    <div style="flex: 1; min-width: 0"><p class="t-cap c-3">الإتنين 2 نوفمبر</p><p class="t-h3">صباح الخير يا منى</p></div>
+    <a class="icon-btn" href="State-Toast-Notification.dc.html" aria-label="الإشعارات"><svg class="i" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></a>
+  </header>
+  <main class="scroll" style="padding-bottom: 20px">
+    <h1 class="t-h1 pad" style="margin-top: 4px; margin-bottom: 12px">هنطبخ إيه النهاردة؟</h1>
+
+    <article class="card" style="margin: 0 16px; box-shadow: var(--sh-2)">
+      <div class="{{hero.ph}}" style="height: 210px">
+        <svg class="i lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg>
+        <span>صورة: {{hero.name}}</span>
+        <span class="tag tomato" style="position: absolute; top: 12px; right: 12px; background: #fff; z-index: 1">أكلة النهاردة</span>
+        <button class="{{favCls}}" onClick="{{toggleFav}}" aria-pressed="{{fav}}" aria-label="أضيفي للمفضلة" style="position: absolute; top: 8px; left: 8px; z-index: 1"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></button>
+      </div>
+      <div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px">
+        <h2 class="t-h2">{{hero.name}}</h2>
+        <div class="meta">
+          <span><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{{hero.time}}</span>
+          <span><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg>4 أفراد</span>
+          <span><svg class="i sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M12 20V10M19 20V4"/></svg>{{hero.level}}</span>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 4px">
+          <a class="btn btn-primary" href="Dish-Ingredients.dc.html" style="flex: 1">شوف الأكلة</a>
+          <button class="btn btn-secondary" onClick="{{swap}}" style="padding: 0 16px">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg>غيّر الأكلة</button>
+        </div>
+      </div>
+    </article>
+
+    <div class="pad sec-head" style="margin-top: 24px"><h2 class="t-h3">اقتراحات تانية ليكي</h2><a class="btn btn-ghost" href="Explore.dc.html" style="height: 44px">الكل</a></div>
+    <div class="chip-row" style="gap: 12px; padding-bottom: 8px">
+      <sc-for list="{{alts}}" as="d" hint-placeholder-count="3">
+        <a class="mini" href="Dish-Ingredients.dc.html">
+          <div class="{{d.ph}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+          <div class="body"><h3 class="name">{{d.name}}</h3><span class="t-cap c-3">{{d.time}} · {{d.level}}</span></div>
+        </a>
+      </sc-for>
+    </div>
+
+    <a class="card" href="Weekly-Plan.dc.html" style="margin: 16px 16px 0; padding: 14px 16px; display: flex; align-items: center; gap: 12px; background: var(--c-green-tint); box-shadow: none">
+      <span style="width: 48px; height: 48px; border-radius: 14px; background: #fff; color: var(--c-green); display: grid; place-items: center; flex: none"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+      <div style="flex: 1; min-width: 0"><p class="t-h3">تحبي تطبخي إيه بكرة؟</p><p class="t-small c-2">مقترح: بامية باللحمة · خطّطي أسبوعك</p></div>
+      <svg class="i chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+    </a>
+  </main>
+  <nav class="tabbar" aria-label="التنقل الرئيسي">
+    <a class="on" href="Home.dc.html" aria-current="page"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span>الرئيسية</a>
+    <a href="Explore.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>استكشفي</a>
+    <a href="Weekly-Plan.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>الأسبوع</a>
+    <a href="Shopping-List.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>المشتريات</a>
+    <a href="Favorites.dc.html"><span class="pill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9-9a4.8 4.8 0 0 1 9-3 4.8 4.8 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></span>المفضلة</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+var DISHES = [
+  { name: 'ملوخية بالفراخ', time: '90 دقيقة', level: 'متوسطة', ph: 'ph ph-2' },
+  { name: 'صينية بطاطس باللحمة', time: '75 دقيقة', level: 'سهلة', ph: 'ph ph-1' },
+  { name: 'محشي كرنب', time: '2 ساعة', level: 'صعبة', ph: 'ph ph-5' },
+  { name: 'سمك بلطي مقلي', time: '40 دقيقة', level: 'سهلة', ph: 'ph ph-3' },
+  { name: 'فراخ بالأرز المعمر', time: '100 دقيقة', level: 'متوسطة', ph: 'ph ph-6' },
+  { name: 'مسقعة باللحمة المفرومة', time: '60 دقيقة', level: 'سهلة', ph: 'ph ph-4' }
+];
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, fav: false };
+  }
+  renderVals() {
+    var self = this, i = this.state.i;
+    var alts = [];
+    for (var k = 1; k <= 4; k++) alts.push(DISHES[(i + k) % DISHES.length]);
+    return {
+      hero: DISHES[i], alts: alts, fav: this.state.fav,
+      favCls: this.state.fav ? 'icon-btn on-photo is-fav' : 'icon-btn on-photo',
+      toggleFav: function () { self.setState({ fav: !self.state.fav }); },
+      swap: function () { self.setState({ i: (self.state.i + 1) % DISHES.length, fav: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

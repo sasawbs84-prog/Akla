@@ -1,0 +1,30 @@
+.dotsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background-color: var(--c-border-strong);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, transform 0.2s ease;
+}
+
+.dot:hover:not(.activeDot) {
+  background-color: var(--c-text-3);
+  transform: scale(1.2);
+}
+
+.activeDot {
+  width: 28px;
+  background-color: var(--c-primary);
+  cursor: default;
+}
+
