@@ -1,11 +1,27 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import Button from "@/components/common/Button/Button";
 import styles from "./page.module.css";
 
-export default function HomePage() {
+export default function SplashPage() {
+  const router = useRouter();
+  const { user, loading, checkOnboardingStatus } = useAuth();
+
+  useEffect(() => {
+    if (!loading && user) {
+      checkOnboardingStatus(user.uid).then((hasCompleted) => {
+        if (hasCompleted) {
+          router.replace("/home");
+        }
+      });
+    }
+  }, [user, loading, router, checkOnboardingStatus]);
+
   return (
     <div className={styles.splashScreen}>
       <div className={styles.centerContent}>

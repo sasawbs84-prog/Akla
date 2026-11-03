@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { MOCK_DISHES } from "@/lib/dishesData";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import styles from "./cook.module.css";
 
 function formatTimer(seconds) {
@@ -17,6 +18,7 @@ function CookingModeContent() {
   const router = useRouter();
   const dishId = params?.id;
   const { prefs } = usePreferences();
+  const { recordDishCooked } = useFavorites();
 
   const dish = MOCK_DISHES.find((d) => d.id === dishId) || MOCK_DISHES[0];
   const steps = dish.steps;
@@ -57,10 +59,15 @@ function CookingModeContent() {
     setTimerRunning(false);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (!isLast) {
       goToStep(currentStepIndex + 1);
     } else {
+      try {
+        await recordDishCooked(dish.id);
+      } catch (err) {
+        console.error("Failed to record cooked dish:", err);
+      }
       router.push("/home");
     }
   };

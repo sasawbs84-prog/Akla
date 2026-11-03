@@ -68,8 +68,8 @@ export default function SignupForm({ onSuccess }) {
     setGeneralError("");
 
     try {
-      await signup(formData.email.trim(), formData.password, formData.name.trim());
-      if (onSuccess) onSuccess();
+      const authResult = await signup(formData.email.trim(), formData.password, formData.name.trim());
+      if (onSuccess) onSuccess(authResult);
     } catch (err) {
       const friendlyMsg = getFriendlyAuthErrorMessage(err.code);
       setGeneralError(friendlyMsg);

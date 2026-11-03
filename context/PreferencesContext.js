@@ -204,26 +204,29 @@ export function PreferencesProvider({ children }) {
   };
 
   // Save all preferences to Firestore Backend
-  const savePreferencesToFirestore = async () => {
+  const savePreferencesToFirestore = async (customPrefs = null, markCompleted = true) => {
     setSaving(true);
+    const prefsToSave = customPrefs || prefs;
     try {
       // Always cache in localStorage
       if (typeof window !== "undefined") {
-        localStorage.setItem("akla_preferences", JSON.stringify(prefs));
+        localStorage.setItem("akla_preferences", JSON.stringify(prefsToSave));
+        if (markCompleted) {
+          localStorage.setItem("akla_hasCompletedOnboarding", "true");
+        }
       }
 
       // Save to Firestore if user is signed in
       if (user?.uid) {
         const userRef = doc(db, "users", user.uid);
-        await setDoc(
-          userRef,
-          {
-            preferences: prefs,
-            hasCompletedOnboarding: true,
-            updatedAt: serverTimestamp(),
-          },
-          { merge: true }
-        );
+        const payload = {
+          preferences: prefsToSave,
+          updatedAt: serverTimestamp(),
+        };
+        if (markCompleted) {
+          payload.hasCompletedOnboarding = true;
+        }
+        await setDoc(userRef, payload, { merge: true });
       }
       return true;
     } catch (err) {

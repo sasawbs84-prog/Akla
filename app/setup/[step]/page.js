@@ -37,9 +37,12 @@ function SetupStepContent() {
   const stepKey = params?.step || "proteins";
   const stepConfig = STEPS_CONFIG[stepKey] || STEPS_CONFIG.proteins;
 
-  const { prefs } = usePreferences();
+  const { prefs, savePreferencesToFirestore } = usePreferences();
 
   const handleNext = () => {
+    // Save progress to Firestore seamlessly
+    savePreferencesToFirestore(null, false).catch(() => {});
+
     if (stepConfig.next.startsWith("/")) {
       router.push(stepConfig.next);
     } else {

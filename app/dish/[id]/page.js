@@ -1,18 +1,21 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import { MOCK_DISHES } from "@/lib/dishesData";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useFavorites } from "@/context/FavoritesContext";
+import { useShopping } from "@/context/ShoppingContext";
 import Button from "@/components/common/Button/Button";
 import styles from "./dish.module.css";
 
 function DishDetailContent() {
   const params = useParams();
-  const router = useRouter();
   const dishId = params?.id;
   const { prefs } = usePreferences();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const { addMissingIngredients } = useShopping();
 
   // Find dish or fallback to first dish
   const dish = MOCK_DISHES.find((d) => d.id === dishId) || MOCK_DISHES[0];
@@ -20,9 +23,9 @@ function DishDetailContent() {
   const [activeTab, setActiveTab] = useState("ingredients"); // 'ingredients' | 'steps'
   const [servings, setServings] = useState(prefs.people || dish.defaultServings || 4);
   const [checkedIngredients, setCheckedIngredients] = useState({});
-  const [isFav, setIsFav] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
+  const isFav = isFavorite(dish.id);
   const defaultServings = dish.defaultServings || 4;
 
   // Toggle ingredient checked state
@@ -41,6 +44,11 @@ function DishDetailContent() {
     setTimeout(() => setToastMessage(""), 2500);
   };
 
+  const handleToggleFavorite = async () => {
+    const isNowFav = await toggleFavorite(dish);
+    showToast(isNowFav ? "تمت الإضافة للمفضلة ❤️" : "تم الحذف من المفضلة");
+  };
+
   const handleShare = () => {
     if (typeof navigator !== "undefined" && navigator.share) {
       navigator.share({
@@ -56,8 +64,14 @@ function DishDetailContent() {
     }
   };
 
-  const handleAddMissingToShopping = () => {
-    showToast(`تمت إضافة ${missingCount} مقادير ناقصة لقائمة المشتريات!`);
+  const handleAddMissingToShopping = async () => {
+    const missing = dish.ingredients.filter((ing) => !checkedIngredients[ing.id]);
+    if (missing.length === 0) {
+      showToast("كل المقادير متوفرة بالفعل لديكِ!");
+      return;
+    }
+    const count = await addMissingIngredients(missing, dish.name);
+    showToast(`تمت إضافة ${count} مقادير ناقصة لقائمة المشتريات ومزامنتها! 🛒`);
   };
 
   // Helper to scale quantities nicely
@@ -81,17 +95,16 @@ function DishDetailContent() {
       {/* Hero Photo Header */}
       <div className={`${styles.heroPhoto} ${styles[dish.ph]}`}>
         <div className={styles.photoActions}>
-          <button
-            type="button"
+          <Link
+            href="/home"
             className={styles.iconBtnPhoto}
-            onClick={() => router.back()}
-            aria-label="رجوع"
+            aria-label="الرجوع للرئيسية"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
               {/* RTL Back arrow points right */}
               <path d="M5 12h14M13 6l6 6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </button>
+          </Link>
 
           <div className={styles.photoRightActions}>
             <button
@@ -111,10 +124,7 @@ function DishDetailContent() {
             <button
               type="button"
               className={`${styles.iconBtnPhoto} ${isFav ? styles.isFav : ""}`}
-              onClick={() => {
-                setIsFav((prev) => !prev);
-                showToast(!isFav ? "تمت الإضافة للمفضلة" : "تم الحذف من المفضلة");
-              }}
+              onClick={handleToggleFavorite}
               aria-label={isFav ? "إزالة من المفضلة" : "إضافة للمفضلة"}
             >
               <svg viewBox="0 0 24 24" fill={isFav ? "currentColor" : "none"} stroke="currentColor">

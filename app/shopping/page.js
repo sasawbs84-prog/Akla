@@ -2,98 +2,26 @@
 
 import { useState } from "react";
 import BottomNav from "@/components/common/BottomNav/BottomNav";
+import { useShopping } from "@/context/ShoppingContext";
 import styles from "./shopping.module.css";
 
-const INITIAL_GROUPS = [
-  {
-    id: "veg",
-    title: "خضار وفاكهة",
-    dotClass: "dotGreen",
-    items: [
-      { id: "s-1", name: "ملوخية خضرا بلدي", qty: "500 جرام", done: false },
-      { id: "s-2", name: "بامية فلاحي صغيرة", qty: "1 كيلو", done: false },
-      { id: "s-3", name: "طماطم بلدي للسلطة والطبخ", qty: "2 كيلو", done: true },
-      { id: "s-4", name: "بصل أحمر خزين", qty: "1 كيلو", done: false },
-      { id: "s-5", name: "ثوم بلدي", qty: "2 رأس", done: false },
-    ],
-  },
-  {
-    id: "meat",
-    title: "لحوم ودواجن وأسماك",
-    dotClass: "dotTomato",
-    items: [
-      { id: "s-6", name: "فرخة بلدي متوسطة", qty: "1.5 كيلو", done: false },
-      { id: "s-7", name: "لحمة كندوز مكعبات", qty: "1 كيلو", done: true },
-      { id: "s-8", name: "سمك بلطي طازة", qty: "4 سمكات", done: false },
-    ],
-  },
-  {
-    id: "spices",
-    title: "عطارة وبقوليات ونشويات",
-    dotClass: "dotSaffron",
-    items: [
-      { id: "s-9", name: "أرز مصري حبة رفيعة", qty: "2 كيلو", done: false },
-      { id: "s-10", name: "شعرية مكرونة", qty: "1 كيس", done: true },
-      { id: "s-11", name: "كزبرة جافة مطحونة", qty: "100 جرام", done: false },
-      { id: "s-12", name: "سمنة بلدي بقري", qty: "برطمان", done: false },
-    ],
-  },
-];
-
 export default function ShoppingListPage() {
-  const [groups, setGroups] = useState(INITIAL_GROUPS);
+  const { groups, totalCount, leftCount, loading, addItem, toggleItem, clearDone } = useShopping();
   const [draftInput, setDraftInput] = useState("");
   const [toastMessage, setToastMessage] = useState("");
 
-  // Flattened stats
-  const allItems = groups.flatMap((g) => g.items);
-  const totalCount = allItems.length;
-  const leftCount = allItems.filter((i) => !i.done).length;
-
-  const toggleItem = (groupId, itemId) => {
-    setGroups((prev) =>
-      prev.map((g) => {
-        if (g.id !== groupId) return g;
-        return {
-          ...g,
-          items: g.items.map((it) =>
-            it.id === itemId ? { ...it, done: !it.done } : it
-          ),
-        };
-      })
-    );
-  };
-
-  const handleAddItem = (e) => {
+  const handleAddItem = async (e) => {
     e.preventDefault();
     if (!draftInput.trim()) return;
 
-    const newItem = {
-      id: `custom-${allItems.length + 1}-${draftInput.trim()}`,
-      name: draftInput.trim(),
-      qty: "1",
-      done: false,
-    };
-
-    setGroups((prev) => {
-      const copy = [...prev];
-      copy[0].items = [newItem, ...copy[0].items];
-      return copy;
-    });
-
+    const nameToAdd = draftInput.trim();
     setDraftInput("");
-    showToast(`تمت إضافة "${newItem.name}" للقائمة`);
+    await addItem({ name: nameToAdd });
+    showToast(`تمت إضافة "${nameToAdd}" للقائمة`);
   };
 
-  const handleClearDone = () => {
-    setGroups((prev) =>
-      prev
-        .map((g) => ({
-          ...g,
-          items: g.items.filter((it) => !it.done),
-        }))
-        .filter((g) => g.items.length > 0)
-    );
+  const handleClearDone = async () => {
+    await clearDone();
     showToast("تم مسح الطلبات المشتراة بنجاح!");
   };
 
@@ -197,7 +125,7 @@ export default function ShoppingListPage() {
                           type="checkbox"
                           className={styles.itemCheckbox}
                           checked={item.done}
-                          onChange={() => toggleItem(group.id, item.id)}
+                          onChange={() => toggleItem(item.id)}
                         />
                         <span className={styles.itemName}>{item.name}</span>
                         <span className={styles.itemQty}>{item.qty}</span>

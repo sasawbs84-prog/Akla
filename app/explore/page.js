@@ -4,15 +4,28 @@ import { useState } from "react";
 import Link from "next/link";
 import BottomNav from "@/components/common/BottomNav/BottomNav";
 import { MOCK_DISHES } from "@/lib/dishesData";
+import { usePreferences } from "@/context/PreferencesContext";
+import { scoreDish } from "@/lib/recommendationEngine";
 import styles from "./explore.module.css";
 
-const CATEGORIES = ["الكل", "دواجن", "لحوم", "أسماك", "طواجن", "محاشي", "شعبي"];
+const CATEGORIES = [
+  "الكل",
+  "طواجن وصواني",
+  "طبيخ وشوربات",
+  "دواجن وطيور",
+  "لحوم حمراء",
+  "أسماك وبحريات",
+  "محاشي ومعجنات",
+  "شعبي واقتصادي",
+];
 
 export default function ExplorePage() {
+  const { prefs } = usePreferences();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("الكل");
   const [quickFilter, setQuickFilter] = useState(false); // <= 60 mins
   const [easyFilter, setEasyFilter] = useState(false); // level === 'سهلة'
+  const [forMeFilter, setForMeFilter] = useState(false); // matches user preferences
 
   // Filtered dishes
   const filteredDishes = MOCK_DISHES.filter((dish) => {
@@ -27,7 +40,10 @@ export default function ExplorePage() {
 
     // Category filter
     if (selectedCategory !== "الكل") {
-      const matchCat = dish.category === selectedCategory || dish.tags.includes(selectedCategory);
+      const catKey = selectedCategory.split(" ")[0]; // e.g. "طواجن", "طبيخ", "دواجن", "لحوم", "أسماك", "محاشي", "شعبي"
+      const matchCat =
+        dish.category.includes(catKey) ||
+        dish.tags.some((t) => t.includes(catKey));
       if (!matchCat) return false;
     }
 
@@ -41,6 +57,14 @@ export default function ExplorePage() {
       return false;
     }
 
+    // Matches My Preferences Filter
+    if (forMeFilter) {
+      const match = scoreDish(dish, prefs);
+      if (!match.isMatch || match.matchPercentage < 75) {
+        return false;
+      }
+    }
+
     return true;
   });
 
@@ -49,6 +73,7 @@ export default function ExplorePage() {
     setSelectedCategory("الكل");
     setQuickFilter(false);
     setEasyFilter(false);
+    setForMeFilter(false);
   };
 
   return (
@@ -107,6 +132,14 @@ export default function ExplorePage() {
 
         {/* Quick Attribute Chips */}
         <div className={styles.chipsRow}>
+          <button
+            type="button"
+            className={`${styles.chip} ${forMeFilter ? styles.chipActive : ""}`}
+            onClick={() => setForMeFilter((f) => !f)}
+          >
+            <span>⭐ تناسب تفضيلاتي</span>
+          </button>
+
           <button
             type="button"
             className={`${styles.chip} ${quickFilter ? styles.chipActive : ""}`}

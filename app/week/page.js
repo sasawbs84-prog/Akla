@@ -1,46 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import BottomNav from "@/components/common/BottomNav/BottomNav";
 import { MOCK_DISHES } from "@/lib/dishesData";
+import { useWeeklyPlan } from "@/context/WeeklyPlanContext";
 import styles from "./week.module.css";
 
-const DAYS_TEMPLATE = [
-  { day: "السبت", date: "31", dishIndex: 0, done: true, today: false },
-  { day: "الحد", date: "1", dishIndex: 1, done: true, today: false },
-  { day: "الإتنين", date: "2", dishIndex: 2, done: false, today: true },
-  { day: "التلات", date: "3", dishIndex: 3, done: false, today: false },
-  { day: "الأربع", date: "4", dishIndex: 4, done: false, today: false },
-  { day: "الخميس", date: "5", dishIndex: 5, done: false, today: false },
-  { day: "الجمعة", date: "6", dishIndex: 6, done: false, today: false },
-];
-
 export default function WeeklyPlanPage() {
-  const [days, setDays] = useState(DAYS_TEMPLATE);
-  const [weekOffset, setWeekOffset] = useState(0);
-
-  const cookedCount = days.filter((d) => d.done).length;
-  const percentage = Math.round((cookedCount / days.length) * 100);
-
-  const toggleDone = (index) => {
-    setDays((prev) => {
-      const copy = [...prev];
-      copy[index] = { ...copy[index], done: !copy[index].done };
-      return copy;
-    });
-  };
-
-  const swapDayDish = (index) => {
-    setDays((prev) => {
-      const copy = [...prev];
-      copy[index] = {
-        ...copy[index],
-        dishIndex: (copy[index].dishIndex + 1) % MOCK_DISHES.length,
-      };
-      return copy;
-    });
-  };
+  const {
+    days,
+    weekOffset,
+    setWeekOffset,
+    cookedCount,
+    percentage,
+    loading,
+    toggleDayCooked,
+    swapDayDish,
+    dishPool,
+  } = useWeeklyPlan();
 
   return (
     <div className={styles.screen}>
@@ -100,7 +77,10 @@ export default function WeeklyPlanPage() {
         {/* Days List */}
         <div className={styles.daysList}>
           {days.map((d, index) => {
-            const dish = MOCK_DISHES[d.dishIndex % MOCK_DISHES.length];
+            const dish =
+              MOCK_DISHES.find((item) => item.id === d.dishId) ||
+              dishPool[index % dishPool.length] ||
+              MOCK_DISHES[0];
             return (
               <article
                 key={index}
@@ -153,7 +133,7 @@ export default function WeeklyPlanPage() {
                     type="checkbox"
                     className={styles.dayCheckbox}
                     checked={d.done}
-                    onChange={() => toggleDone(index)}
+                    onChange={() => toggleDayCooked(index)}
                   />
                 </label>
               </article>

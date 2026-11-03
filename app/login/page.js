@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
 import AuthHeader from "@/components/auth/AuthHeader/AuthHeader";
 import AuthTabs from "@/components/auth/AuthTabs/AuthTabs";
 import LoginForm from "@/components/auth/LoginForm/LoginForm";
@@ -12,10 +13,38 @@ import styles from "./login.module.css";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { user, loading, checkOnboardingStatus } = useAuth();
   const [activeTab, setActiveTab] = useState("login");
 
-  const handleAuthSuccess = () => {
-    // Navigate to preferences setup or home
+  // If user is already authenticated and has completed onboarding, go to home
+  useEffect(() => {
+    if (!loading && user) {
+      checkOnboardingStatus(user.uid).then((hasCompleted) => {
+        if (hasCompleted) {
+          router.replace("/home");
+        }
+      });
+    }
+  }, [user, loading, router, checkOnboardingStatus]);
+
+  const handleAuthSuccess = async (authResult) => {
+    // 1. If auth response indicates onboarding is already completed, go to home
+    if (authResult?.hasCompletedOnboarding) {
+      router.push("/home");
+      return;
+    }
+
+    // 2. Double check Firestore document for existing preferences
+    const uid = authResult?.user?.uid || user?.uid;
+    if (uid) {
+      const isComplete = await checkOnboardingStatus(uid);
+      if (isComplete) {
+        router.push("/home");
+        return;
+      }
+    }
+
+    // 3. Otherwise, for new users without preferences, go to setup wizard
     router.push("/setup/proteins");
   };
 

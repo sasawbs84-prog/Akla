@@ -17,8 +17,8 @@ export default function SocialAuth({ onSuccess }) {
     setError("");
     setGoogleLoading(true);
     try {
-      await loginWithGoogle();
-      if (onSuccess) onSuccess();
+      const authResult = await loginWithGoogle();
+      if (onSuccess) onSuccess(authResult);
     } catch (err) {
       if (err.code !== "auth/popup-closed-by-user") {
         setError(getFriendlyAuthErrorMessage(err.code));
@@ -32,8 +32,8 @@ export default function SocialAuth({ onSuccess }) {
     setError("");
     setGuestLoading(true);
     try {
-      await loginAsGuest();
-      if (onSuccess) onSuccess();
+      const authResult = await loginAsGuest();
+      if (onSuccess) onSuccess(authResult);
     } catch (err) {
       setError(getFriendlyAuthErrorMessage(err.code));
     } finally {

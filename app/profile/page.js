@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { usePreferences } from "@/context/PreferencesContext";
+import { seedDishesToFirestore } from "@/lib/dishesService";
 import BottomNav from "@/components/common/BottomNav/BottomNav";
 import styles from "./profile.module.css";
 
@@ -16,6 +17,19 @@ export default function ProfilePage() {
   const [reminderOn, setReminderOn] = useState(true);
   const [reminderTime, setReminderTime] = useState("11:00 الصبح");
   const [toastMessage, setToastMessage] = useState("");
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSyncDishes = async () => {
+    setIsSyncing(true);
+    try {
+      await seedDishesToFirestore();
+      showToast("تم تحديث ومزامنة 110 أكلة مصرية في Firestore بنجاح! 🎉");
+    } catch {
+      showToast("فشلت المزامنة، تأكد من الاتصال بالإنترنت.");
+    } finally {
+      setIsSyncing(false);
+    }
+  };
 
   const userName = user?.displayName || "شيف أكلة";
   const userEmail = user?.email || "حساب ضيف";
@@ -179,6 +193,43 @@ export default function ProfilePage() {
                 <span className={styles.timeTag}>{reminderTime}</span>
               </button>
             )}
+          </div>
+        </section>
+
+        {/* Firestore Database Group */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>قاعدة بيانات الأكلات (Firestore)</h2>
+          <div className={styles.listCard}>
+            <div className={styles.listItem}>
+              <span className={styles.itemLeadIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 6c0 1.66 3.58 3 8 3s8-1.34 8-3-3.58-3-8-3-8 1.34-8 3z" strokeWidth="1.8" />
+                  <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" strokeWidth="1.8" />
+                  <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" strokeWidth="1.8" />
+                </svg>
+              </span>
+              <span className={styles.itemGrow}>إجمالي الأكلات المصرية</span>
+              <span className={styles.itemVal}>110 أكلة موثقة</span>
+            </div>
+
+            <button
+              type="button"
+              className={styles.listItemBtn}
+              onClick={handleSyncDishes}
+              disabled={isSyncing}
+            >
+              <span className={styles.itemLeadIcon}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className={styles.itemGrow}>
+                {isSyncing ? "جاري المزامنة مع Firestore..." : "مزامنة الأكلات مع Firestore"}
+              </span>
+              <span className={styles.timeTag}>
+                {isSyncing ? "مزامنة..." : "تحديث 🔄"}
+              </span>
+            </button>
           </div>
         </section>
 

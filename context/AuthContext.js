@@ -21,6 +21,7 @@ const AuthContext = createContext({
   loginWithGoogle: async () => {},
   loginAsGuest: async () => {},
   logout: async () => {},
+  checkOnboardingStatus: async () => false,
 });
 
 export function AuthProvider({ children }) {
@@ -29,13 +30,13 @@ export function AuthProvider({ children }) {
 
   // Sync user profile in Firestore
   const syncUserProfile = async (firebaseUser, additionalData = {}) => {
-    if (!firebaseUser) return;
+    if (!firebaseUser) return { hasCompletedOnboarding: false, preferences: {} };
     try {
       const userRef = doc(db, "users", firebaseUser.uid);
       const userSnap = await getDoc(userRef);
 
       if (!userSnap.exists()) {
-        await setDoc(userRef, {
+        const initialDoc = {
           uid: firebaseUser.uid,
           email: firebaseUser.email || null,
           displayName: firebaseUser.displayName || additionalData.displayName || "شيف أكلة",
@@ -45,8 +46,11 @@ export function AuthProvider({ children }) {
           updatedAt: serverTimestamp(),
           hasCompletedOnboarding: false,
           preferences: {},
-        });
+        };
+        await setDoc(userRef, initialDoc);
+        return { hasCompletedOnboarding: false, preferences: {} };
       } else {
+        const data = userSnap.data() || {};
         await setDoc(
           userRef,
           {
@@ -55,10 +59,39 @@ export function AuthProvider({ children }) {
           },
           { merge: true }
         );
+
+        const hasStoredPrefs =
+          data.preferences?.proteins &&
+          Object.keys(data.preferences.proteins).length > 0;
+        const isCompleted = data.hasCompletedOnboarding === true || hasStoredPrefs;
+
+        return {
+          hasCompletedOnboarding: isCompleted,
+          preferences: data.preferences || {},
+        };
       }
     } catch (err) {
       console.error("Error syncing user profile:", err);
+      return { hasCompletedOnboarding: false, preferences: {} };
     }
+  };
+
+  const checkOnboardingStatus = async (uid) => {
+    if (!uid) return false;
+    try {
+      const userRef = doc(db, "users", uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const data = userSnap.data() || {};
+        const hasStoredPrefs =
+          data.preferences?.proteins &&
+          Object.keys(data.preferences.proteins).length > 0;
+        return data.hasCompletedOnboarding === true || hasStoredPrefs;
+      }
+    } catch (err) {
+      console.warn("Error checking onboarding status:", err);
+    }
+    return false;
   };
 
   useEffect(() => {
@@ -75,26 +108,38 @@ export function AuthProvider({ children }) {
     if (displayName) {
       await updateProfile(userCredential.user, { displayName });
     }
-    await syncUserProfile(userCredential.user, { displayName });
-    return userCredential.user;
+    const profile = await syncUserProfile(userCredential.user, { displayName });
+    return {
+      user: userCredential.user,
+      hasCompletedOnboarding: profile?.hasCompletedOnboarding ?? false,
+    };
   };
 
   const login = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    await syncUserProfile(userCredential.user);
-    return userCredential.user;
+    const profile = await syncUserProfile(userCredential.user);
+    return {
+      user: userCredential.user,
+      hasCompletedOnboarding: profile?.hasCompletedOnboarding ?? false,
+    };
   };
 
   const loginWithGoogle = async () => {
     const userCredential = await signInWithPopup(auth, googleProvider);
-    await syncUserProfile(userCredential.user);
-    return userCredential.user;
+    const profile = await syncUserProfile(userCredential.user);
+    return {
+      user: userCredential.user,
+      hasCompletedOnboarding: profile?.hasCompletedOnboarding ?? false,
+    };
   };
 
   const loginAsGuest = async () => {
     const userCredential = await signInAnonymously(auth);
-    await syncUserProfile(userCredential.user, { displayName: "ضيف أكلة" });
-    return userCredential.user;
+    const profile = await syncUserProfile(userCredential.user, { displayName: "ضيف أكلة" });
+    return {
+      user: userCredential.user,
+      hasCompletedOnboarding: profile?.hasCompletedOnboarding ?? false,
+    };
   };
 
   const logout = async () => {
@@ -111,6 +156,7 @@ export function AuthProvider({ children }) {
         loginWithGoogle,
         loginAsGuest,
         logout,
+        checkOnboardingStatus,
       }}
     >
       {children}

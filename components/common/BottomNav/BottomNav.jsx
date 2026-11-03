@@ -53,6 +53,16 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+  {
+    href: "/profile",
+    label: "حسابي",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="8" r="4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M20 21a8 8 0 0 0-16 0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export default function BottomNav() {

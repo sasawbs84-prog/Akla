@@ -4,7 +4,9 @@ import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import { MOCK_DISHES } from "@/lib/dishesData";
+import { getTodayRecommendation } from "@/lib/recommendationEngine";
 import BottomNav from "@/components/common/BottomNav/BottomNav";
 import Button from "@/components/common/Button/Button";
 import styles from "./home.module.css";
@@ -27,26 +29,18 @@ const getServerDate = () => "طبخة اليوم";
 export default function HomePage() {
   const { user } = useAuth();
   const { prefs } = usePreferences();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const [dishIndex, setDishIndex] = useState(0);
-  const [favoritesMap, setFavoritesMap] = useState({});
   const [toastMessage, setToastMessage] = useState("");
 
-  const currentDish = MOCK_DISHES[dishIndex % MOCK_DISHES.length];
-  const isFav = !!favoritesMap[currentDish.id];
+  const { todayDish, alternatives } = getTodayRecommendation(MOCK_DISHES, prefs, dishIndex);
+  const currentDish = todayDish || MOCK_DISHES[0];
+  const isFav = isFavorite(currentDish.id);
 
-  // 4 alternative suggestions
-  const alternatives = [1, 2, 3, 4].map(
-    (offset) => MOCK_DISHES[(dishIndex + offset) % MOCK_DISHES.length]
-  );
-
-  const toggleFavorite = (id, dishName) => {
-    setFavoritesMap((prev) => {
-      const updated = { ...prev, [id]: !prev[id] };
-      const statusText = updated[id] ? "اتحفظت في المفضلة" : "اتشالت من المفضلة";
-      showToast(`${dishName}: ${statusText}`);
-      return updated;
-    });
+  const handleToggleFavorite = async (dish) => {
+    const isNowFav = await toggleFavorite(dish);
+    showToast(isNowFav ? `تمت إضافة "${dish.name}" إلى المفضلة ❤️` : `تمت إزالة "${dish.name}" من المفضلة`);
   };
 
   const handleSwapDish = () => {
@@ -111,15 +105,20 @@ export default function HomePage() {
           {/* Photo banner */}
           <div className={`${styles.photoArea} ${styles[currentDish.ph]}`}>
             <span className={styles.dishEmojiBig}>{currentDish.emoji}</span>
-            <span className={styles.photoCaption}>صورة: {currentDish.name}</span>
+            <span className={styles.photoCaption}>{currentDish.name}</span>
 
             {/* Badges & Actions over photo */}
             <span className={styles.todayTag}>أكلة النهاردة</span>
+            {currentDish.matchPercentage && (
+              <span className={styles.matchBadge}>
+                ⭐ {currentDish.matchPercentage}% يناسب ذوقك
+              </span>
+            )}
 
             <button
               type="button"
               className={`${styles.photoFavBtn} ${isFav ? styles.isFav : ""}`}
-              onClick={() => toggleFavorite(currentDish.id, currentDish.name)}
+              onClick={() => handleToggleFavorite(currentDish)}
               aria-label={isFav ? "إزالة من المفضلة" : "إضافة للمفضلة"}
             >
               <svg viewBox="0 0 24 24" fill={isFav ? "currentColor" : "none"} stroke="currentColor">
@@ -138,6 +137,12 @@ export default function HomePage() {
 
             <h3 className={styles.dishName}>{currentDish.name}</h3>
             <p className={styles.dishDesc}>{currentDish.description}</p>
+
+            {currentDish.matchText && (
+              <div className={styles.matchReasonBox}>
+                <span>✨ {currentDish.matchText}</span>
+              </div>
+            )}
 
             <div className={styles.metaRow}>
               <span className={styles.metaItem}>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import Button from "@/components/common/Button/Button";
 import OnboardingIllustration from "@/components/onboarding/OnboardingIllustration/OnboardingIllustration";
 import OnboardingDots from "@/components/onboarding/OnboardingDots/OnboardingDots";
@@ -49,8 +50,20 @@ const ONBOARDING_SLIDES = [
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const { user, loading, checkOnboardingStatus } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
+
+  // If already authenticated and completed onboarding, redirect to /home
+  useEffect(() => {
+    if (!loading && user) {
+      checkOnboardingStatus(user.uid).then((hasCompleted) => {
+        if (hasCompleted) {
+          router.replace("/home");
+        }
+      });
+    }
+  }, [user, loading, router, checkOnboardingStatus]);
 
   const totalSteps = ONBOARDING_SLIDES.length;
   const currentSlide = ONBOARDING_SLIDES[currentStep];

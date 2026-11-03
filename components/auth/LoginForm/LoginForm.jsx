@@ -53,8 +53,8 @@ export default function LoginForm({ onSuccess }) {
     setGeneralError("");
 
     try {
-      await login(formData.email.trim(), formData.password);
-      if (onSuccess) onSuccess();
+      const authResult = await login(formData.email.trim(), formData.password);
+      if (onSuccess) onSuccess(authResult);
     } catch (err) {
       const friendlyMsg = getFriendlyAuthErrorMessage(err.code);
       setGeneralError(friendlyMsg);

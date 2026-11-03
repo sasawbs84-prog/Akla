@@ -3,24 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import BottomNav from "@/components/common/BottomNav/BottomNav";
-import { MOCK_DISHES } from "@/lib/dishesData";
+import { useFavorites } from "@/context/FavoritesContext";
 import styles from "./favorites.module.css";
 
-const INITIAL_FAVORITES = [
-  { dish: MOCK_DISHES[0], lastCooked: "اتطبخت آخر مرة من 3 أيام" },
-  { dish: MOCK_DISHES[1], lastCooked: "اتطبخت آخر مرة من 10 أيام" },
-  { dish: MOCK_DISHES[2], lastCooked: "لسه متطبختش" },
-  { dish: MOCK_DISHES[3], lastCooked: "اتطبخت الأسبوع اللي فات" },
-  { dish: MOCK_DISHES[4], lastCooked: "اتطبخت آخر مرة من أسبوعين" },
-  { dish: MOCK_DISHES[5], lastCooked: "لسه متطبختش" },
-];
-
 export default function FavoritesPage() {
-  const [favorites, setFavorites] = useState(INITIAL_FAVORITES);
+  const { favorites, removeFavorite } = useFavorites();
   const [toastMessage, setToastMessage] = useState("");
 
-  const removeFavorite = (dishId, dishName) => {
-    setFavorites((prev) => prev.filter((item) => item.dish.id !== dishId));
+  const handleRemove = async (dishId, dishName) => {
+    await removeFavorite(dishId);
     setToastMessage(`تمت إزالة "${dishName}" من المفضلة`);
     setTimeout(() => setToastMessage(""), 2500);
   };
@@ -40,7 +31,7 @@ export default function FavoritesPage() {
             <h1 className={styles.title}>المفضلة</h1>
             <p className={styles.subtitle}>
               {favorites.length > 0
-                ? `${favorites.length} أكلات محفوظة`
+                ? `${favorites.length} أكلات محفوظة في حسابك`
                 : "قائمتك خالية"}
             </p>
           </div>
@@ -54,7 +45,7 @@ export default function FavoritesPage() {
                 {/* Thumbnail */}
                 <Link
                   href={`/dish/${dish.id}`}
-                  className={`${styles.dishThumb} ${styles[dish.ph]}`}
+                  className={`${styles.dishThumb} ${styles[dish.ph] || styles.ph1}`}
                   aria-label={dish.name}
                 >
                   <span className={styles.thumbEmoji}>{dish.emoji}</span>
@@ -75,7 +66,7 @@ export default function FavoritesPage() {
                 <button
                   type="button"
                   className={styles.removeFavBtn}
-                  onClick={() => removeFavorite(dish.id, dish.name)}
+                  onClick={() => handleRemove(dish.id, dish.name)}
                   aria-label={`شيلي ${dish.name} من المفضلة`}
                   title="إزالة من المفضلة"
                 >
